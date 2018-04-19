@@ -71,7 +71,7 @@
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `firstName` TEXT NOT NULL,
                 `lastName` TEXT NOT NULL,
-                `middleName` TEXT NOT NULL, 
+                `middleName` TEXT, 
                 PRIMARY KEY (`id`)
             );
             CREATE TABLE `$name`.`disciplines` (
@@ -279,6 +279,14 @@
                 `manager_digest` TEXT NOT NULL,
                 `secret_word` TEXT NOT NULL,
                 `email` TEXT,
+                PRIMARY KEY (`id`)
+            );
+            CREATE TABLE `$name`.`administration` (
+                `id` INT NOT NULL AUTO_INCREMENT,
+                `firstName` TEXT NOT NULL,
+                `lastName` TEXT NOT NULL,
+                `middleName` TEXT,
+                `position` TEXT NOT NULL,
                 PRIMARY KEY (`id`)
             );
             INSERT INTO `managers` (

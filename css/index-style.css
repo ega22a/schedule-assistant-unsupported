@@ -1,0 +1,14 @@
+.img {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    background: rgba(146, 144, 144, 0.6);
+}
+
+.img-sub {
+    background: url(../img/background.png) no-repeat;
+    background-size: cover;
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+}
