@@ -1,0 +1,12 @@
+p {
+    margin: 25px 130px;
+}
+
+span:before {
+    font-family: "FontAwesome";
+    content: "\f119";
+    display: block;
+    text-align: center;
+    font-size: 150px;
+    margin: 100px;
+}

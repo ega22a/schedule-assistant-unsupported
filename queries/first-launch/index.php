@@ -4,6 +4,14 @@
         exit();
     }
     else {
-        include('actions/forms/firstForm.phtml');
+        for ($i = 0; $i < 256; $i++) {
+            for ($j = 0; $j < 256; $j++) {
+                if ($_SERVER['REMOTE_ADDR'] == '192.168.' . $i . '.' . $j || $_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '::1') {
+                    include('actions/forms/firstForm.phtml');
+                    Exit;
+                }
+            }
+        }
+        include('actions/forms/error.phtml');
     }
 ?>
