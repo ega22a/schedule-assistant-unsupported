@@ -48,22 +48,31 @@
             }
             return $str;
         }
+
+        include ('nouns.php');
         
         $manager_login = RandStr(1, 5);
         $manager_password = RandStr(2, 10);
-        $manager_secret_word = RandStr(1, 25);
+        $manager_secret_word = [$nouns[random_int(0, count($nouns) - 1)], $nouns[random_int(0, count($nouns) - 1)], $nouns[random_int(0, count($nouns) - 1)]];
         $manager_digest = hash("sha256", RandStr(1, 125));
         
         // Заполнение данных на отдачу в форму, а также запись в БД
         $answer += [
             'manager_login' => $manager_login,
             'manager_password' => $manager_password,
-            'manager_secret_word' => $manager_secret_word
+            'manager_secret_word_1' => $manager_secret_word[0],
+            'manager_secret_word_2' => $manager_secret_word[1],
+            'manager_secret_word_3' => $manager_secret_word[2]
         ];
         
-        // Шифрование логина и кодового слова
+        // Шифрование логина и кодовых слов
         $manager_password = password_hash($manager_password, PASSWORD_DEFAULT);
         $manager_secret_word = password_hash($manager_secret_word, PASSWORD_DEFAULT);
+        $manager_secret_word = [
+            hash("sha256", $manager_secret_word[0]),
+            hash("sha256", $manager_secret_word[1]),
+            hash("sha256", $manager_secret_word[2])
+        ];
 
         // Компоновка SQL-запроса на создание таблиц в БД
         $query = "
@@ -277,7 +286,9 @@
                 `manager_login` TEXT NOT NULL,
                 `manager_password` TEXT NOT NULL,
                 `manager_digest` TEXT NOT NULL,
-                `secret_word` TEXT NOT NULL,
+                `secret_word_1` TEXT NOT NULL,
+                `secret_word_2` TEXT NOT NULL,
+                `secret_word_3` TEXT NOT NULL,
                 `email` TEXT,
                 PRIMARY KEY (`id`)
             );
@@ -293,14 +304,18 @@
                 `manager_login`,
                 `manager_password`,
                 `manager_digest`,
-                `secret_word`,
+                `secret_word_1`,
+                `secret_word_2`,
+                `secret_word_3`,
                 `email`
             )
             VALUES (
                 '$manager_login',
                 '$manager_password',
                 '$manager_digest',
-                '$manager_secret_word',
+                '$manager_secret_word[0]',
+                '$manager_secret_word[1]',
+                '$manager_secret_word[2]',
                 NULL
             );
         ";

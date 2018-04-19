@@ -36,7 +36,9 @@ function ConnectToDB() {
                     case 0:
                         document.getElementById('requestLogin').innerHTML = data['manager_login'];
                         document.getElementById('requestPass').innerHTML = data['manager_password'];
-                        document.getElementById('requestWord').innerHTML = data['manager_secret_word'];
+                        document.getElementById('requestWord_1').innerHTML = data['manager_secret_word_1'];
+                        document.getElementById('requestWord_2').innerHTML = data['manager_secret_word_2'];
+                        document.getElementById('requestWord_3').innerHTML = data['manager_secret_word_3'];
                         $('.absolute-message').css('display', 'block');
                         $('.absolute-message').animate({'opacity': '1'}, 'fast');
                     break;
