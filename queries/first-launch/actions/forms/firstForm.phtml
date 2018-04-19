@@ -1,0 +1,68 @@
+<?php
+    if (file_exists('../../../../config/MySQL/const.php')) {
+        header("HTTP/1.0 403 Forbidden");
+        exit();
+    }
+echo '
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/main-style.css">
+    <link rel="stylesheet" href="css/launch-style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../js/main-actions.js"></script>
+    <script src="js/launch-action.js"></script>
+    <title>Ассистент/Расписание | Первый запуск</title>
+</head>
+<body>
+    <div class="workspace">
+        <div class="message-box not-selected">
+            
+        </div>
+        <div class="absolute-message">
+            <div>
+                <p><b>ВНИМАНИЕ!</b> Эти данные нужно запомнить!</p>
+                <p>Логин: <b><span id="requestLogin" class="logotype"></span></b></p>
+                <p>Пароль: <b><span id="requestPass" class="logotype"></span></b></p>
+                <p>Кодовое слово: <b><span id="requestWord" class="logotype"></span></b></p>
+                <p>Кодовое слово нужно для того, чтобы была возможность сбросить пароль при необходимости. Храните его в надежном месте.</p>
+                <input type="button" value="Продолжить установку" onclick="continueInstalation();">
+            </div>
+        </div>
+        <h1>Добро пожаловать!</h1>
+        <h3 class="logotype">Ассистент/Расписание</h3>
+        <form id="removeForm">
+            <p>Поздравляем! Вы начали использовать информационную систему <span class="logotype">Ассистент/Расписание</span>. Для того, чтобы начать пользоваться программным продуктом, Вам нужно кое-что настроить.</p>
+            <p>Это займет у Вас буквально пару минут...</p>
+            <p>Заполните следующие данные, чтобы информационная система имела доступ к базе данных (поля по умолчанию можно не заполнять):</p>
+            <div class="input">
+                <input type="text" id="DB_login" placeholder="Логин">
+                <span></span>
+            </div>
+            <div class="input">
+                <input type="password" id="DB_password" placeholder="Пароль">
+                <span></span>
+            </div>
+            <div class="input">
+                <input type="text" id="DB_name" placeholder="Имя базы данных">
+                <span></span>
+            </div>
+            <div class="input">
+                <input type="text" id="DB_host" placeholder="Имя хоста (по умолчанию: localhost)">
+                <span></span>
+            </div>
+            <div class="input">
+                <input type="text" id="DB_charset" placeholder="Кодировка (по умолчанию: utf8)">
+                <span></span>
+            </div>
+            <p><b>ВНИМАНИЕ!</b> Настоятельно не рекомендуется использовать пользователя <i>root</i> для доступа к базе данных. Создайте нового пользователя в СУБД, а также создайте для него базу данных с полными привелегиями.</p>
+            <input type="button" value="Подключиться" onclick="ConnectToDB();"></div>
+        </form>
+    </div>
+</body>
+</html>
+';
+?>

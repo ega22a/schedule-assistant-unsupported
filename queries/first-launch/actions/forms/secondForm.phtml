@@ -1,0 +1,26 @@
+<?php
+    if (file_exists('../../../../config/admin.php')) {
+        header("HTTP/1.0 403 Forbidden");
+        exit();
+    }
+echo '
+    <p>Введите данные системного администратора для завершения установки.</p>
+    <div class="input">
+        <input type="text" id="admin_email" placeholder="Электронная почта">
+        <span></span>
+    </div>
+    <div class="input">
+        <input type="text" id="admin_firstName" placeholder="Имя">
+        <span></span>
+    </div>
+    <div class="input">
+        <input type="text" id="admin_lastName" placeholder="Фамилия">
+        <span></span>
+    </div>
+    <div class="input">
+        <input type="text" id="admin_middleName" placeholder="Отчество (при наличии)">
+        <span></span>
+    </div>
+    <input type="button" value="Завершить установку" onclick="finishInstallation();"></div>
+';
+?>

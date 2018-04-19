@@ -1,0 +1,278 @@
+/* Основной файл каскадного стиля для информационной системы */
+
+/* Подключение удаленных шрифтов */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+body {
+	background: #fafafa;
+	margin: 0;
+	font-family: "Roboto", sans-serif;
+}
+
+/* Стиль для контейнера уведомлений */
+.message-box {
+	position: absolute;
+	z-index: 200;
+}
+
+.message {
+	opacity: 0;
+	width: 347px;
+	height: 70px;
+	padding: 5px;
+	margin-top: 20px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.message > span:before {
+	font-family: "FontAwesome";
+	content: "\f00d";
+	float: right;
+	margin: 5px 5px 0 0;
+	cursor: pointer;
+}
+
+.message > p {
+	display: block;
+	height: 42px;
+	overflow: hidden;
+	margin-top: 15px;
+}
+
+.push {
+	background: #42a5f5;
+	border-left: 3px solid #0d47a1;
+}
+
+.alert {
+	background: #ffb74d;
+	border-left: 3px solid #ef6c00;
+}
+
+.warning {
+	background: #EF5350;
+	border-left: 3px solid #B71C1C;
+}
+
+/* Стиль основной рабочей среды */
+.workspace {
+	background: #ffffff;
+	min-width: 300px;
+	max-width: 1280px;
+	margin: 0 auto;
+	border-left: 1px solid #dedede;
+	border-right: 1px solid #dedede;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+@media (max-width: 1280px) {
+	.workspace {
+		border: none;
+	}
+}
+
+/* Стиль головного меню */
+.header-menu, .header-menu-submenu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.header-menu-submenu {
+	position: absolute;
+}
+
+.header-menu {
+	width: 100%;
+	height: 50px;
+	background: #009688;
+	z-index: 300;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.header-menu > li {
+	float: left;
+}
+
+.header-menu > .right {
+	float: right;
+}
+
+.header-menu li {
+	height: 50px;
+	background: #009688;
+	transition: 250ms ease-in-out;
+}
+
+.header-menu li:hover {
+	background: #00796B;
+}
+
+.header-menu li > a {
+	color: #ffffff;
+	text-decoration: none;
+	font-family: "Roboto";
+	display: block;
+	height: 100%;
+	line-height: 50px;
+	padding: 0 10px;
+}
+
+.header-menu li > ul {
+ 	visibility: hidden;
+ 	opacity: 0;
+ 	transform: translateY(-15px);
+    transition: .3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);	
+}
+
+.header-menu > li:hover .header-menu-submenu {
+ 	visibility: visible;
+ 	opacity: 1;
+	transform: translateY(0px);
+}
+
+/* Специальный стиль для невыделяемых элементов */
+.not-selected {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
+
+/* Стиль для радиокнопок */
+.radio {
+    position: relative;
+    margin: 0 0 10px;
+    font-size: 16px;
+    line-height: 24px;
+    box-sizing: border-box;
+}
+    
+.radio_input {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 36px;
+    height: 20px;
+    opacity: 0;
+    z-index: 0;
+    box-sizing: border-box;
+    display: none;
+}
+
+.radio_label {
+    padding: 0 0 0 24px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+        
+.radio_label:before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    border: 2px solid rgba(0, 0, 0 , .54);
+    border-radius: 14px;
+    z-index: 1;
+    transition: rgba(0, 0, 0 , .54) 0.28s cubic-bezier(.4, 0, .2, 1);
+    box-sizing: border-box;
+}
+         
+.radio_label:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    background-color: #00796B;
+    border-radius: 50%;
+    z-index: 2;
+    transform: scale(0, 0);
+    transition: transform 0.28s cubic-bezier(.4, 0, .2, 1);
+    box-sizing: border-box;
+}
+.radio_input:checked + .radio_label:before {
+    border-color: #00796B;
+    box-sizing: border-box;
+}
+
+.radio_input:checked + .radio_label:after {
+    transform: scale(1, 1);
+    box-sizing: border-box;
+}
+
+/* Стиль кнопок */
+input[type="text"], input[type="password"] {
+	display: inline-block;
+	border: none;
+	padding: .5em;
+	font-size: 1em;
+	background: none;
+	outline: none;
+	border-bottom: 1px solid #bdbdbd;
+	width: 95%
+}
+
+input[type="text"] + span, input[type="password"] + span {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	background-color: #00796B;
+	transition: 350ms ease-in-out;
+}
+
+input[type="text"]:focus + span, input[type="password"]:focus + span {
+	width: 100%;
+	transition: 350ms ease-in-out;
+	left: 0;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+	color: #000000;
+}
+
+.input {
+	position: relative;
+	margin-top: .5em;
+    z-index: 0;
+    max-width: 300px;
+}
+
+input[type="button"], input[type="submit"] {
+	cursor: pointer;
+	outline: none;
+	margin: 1em 1em 1em 0;
+	font-size: 1em;
+	padding: .3em .5em;
+	background: #009688;
+	border-radius: 5px;
+	border: none;
+	font-family: "Roboto", serif;
+	color: #ffffff;
+	box-shadow: 0 3px 0 #00796B;
+	position: relative;
+	top: 0;
+	transition: 100ms ease-in-out;
+	float: right;
+}
+
+input[type="button"]:active, input[type="submit"]:active {
+	box-shadow: 0 0 0 #00796B;
+	top: 3px;
+}
+
+/* Стиль для логотипа */
+.logotype {
+    font-family: "Roboto Slab";
+}
