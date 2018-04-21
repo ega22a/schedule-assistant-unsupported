@@ -1,5 +1,5 @@
 <?php
-    if (file_exists('../../../../config/MySQL/const.php')) {
+    if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/config/mysql/const.php')) {
         header("HTTP/1.0 403 Forbidden");
         exit();
     }
@@ -328,7 +328,7 @@
 
         // Создание конфигурирующего файла для работы с БД
         $MySQL_CONF = "<?php\n\tdefine('MySQL_LOGIN', '$login');\n\tdefine('MySQL_PASSWORD', '$pass');\n\tdefine('MySQL_HOST', '$host');\n\tdefine('MySQL_DB', '$name');\n?>";
-        $MySQL_CONF_FILE = fopen('../../../config/MySQL/const.php', 'w');
+        $MySQL_CONF_FILE = fopen($_SERVER['DOCUMENT_ROOT'] . '/config/mysql/const.php', 'w');
         fwrite($MySQL_CONF_FILE, $MySQL_CONF);
         fclose($MySQL_CONF_FILE);
 

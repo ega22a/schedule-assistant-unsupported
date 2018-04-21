@@ -1,5 +1,5 @@
 <?php
-    if (file_exists('../../../../config/MySQL/const.php')) {
+    if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/config/mysql/const.php')) {
         header("HTTP/1.0 403 Forbidden");
         exit();
     }

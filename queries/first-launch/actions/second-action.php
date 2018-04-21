@@ -6,7 +6,7 @@
     $mName = $_POST['admin_middleName'];
 
     $ADMIN = "<?php\n\tdefine('ADMIN_EMAIL', '$email');\n\tdefine('ADMIN_FIRSTNAME', '$fname');\n\tdefine('ADMIN_LASTNAME', '$lname');\n\tdefine('ADMIN_MIDDLENAME', '$mName');\n?>";
-    $ADMIN_FILE = fopen('../../../config/admin.php', 'w');
+    $ADMIN_FILE = fopen($_SERVER['DOCUMENT_ROOT'] . '/config/admin.php', 'w');
     fwrite($ADMIN_FILE, $ADMIN);
     fclose($ADMIN_FILE);
 ?>

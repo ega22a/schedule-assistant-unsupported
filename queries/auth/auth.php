@@ -16,7 +16,7 @@
     $fingerprint = $_POST['fingerprint'];
 
     // Совершаем соединение к БД
-    require_once '../../config/MySQL/connect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
 
     // Выполняем запрос на поиск контент-менеджера, формируем ответ в виде массива
     $query = "SELECT * FROM `managers` WHERE `manager_login` = '$login'";

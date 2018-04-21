@@ -1,8 +1,8 @@
 <?php
-    if (file_exists('config/MySQL/const.php')) {
+    if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/config/mysql/const.php')) {
         echo '<!DOCTYPE html><html lang="ru">';
-        include ('queries/index/head.phtml');
-        include ('queries/index/body.phtml');
+        include ($_SERVER['DOCUMENT_ROOT'] . '/queries/index/head.phtml');
+        include ($_SERVER['DOCUMENT_ROOT'] . '/queries/index/body.phtml');
         echo '</html>';
     }
     else {

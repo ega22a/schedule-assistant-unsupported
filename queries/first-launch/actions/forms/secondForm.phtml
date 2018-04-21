@@ -1,5 +1,5 @@
 <?php
-    if (file_exists('../../../../config/admin.php')) {
+    if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/config/admin.php')) {
         header("HTTP/1.0 403 Forbidden");
         exit();
     }
