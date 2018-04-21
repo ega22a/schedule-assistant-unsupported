@@ -1,4 +1,4 @@
 <?php
     include('const.php');
-    $MySQL = new mysqli(MYSQL_HOST, MYSQL_LOGIN, MYSQL_PASSWORD, MYSQL_DB);
+    $MySQL = new mysqli(MySQL_HOST, MySQL_LOGIN, MySQL_PASSWORD, MySQL_DB);
 ?>

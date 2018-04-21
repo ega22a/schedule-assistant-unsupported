@@ -14,7 +14,7 @@ body {
 /* Стиль для контейнера уведомлений */
 .message-box {
 	position: absolute;
-	z-index: 200;
+	z-index: 500;
 }
 
 .message {
