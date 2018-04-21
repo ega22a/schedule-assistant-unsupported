@@ -1,5 +1,21 @@
 <?php
     echo '
+        <div class="modal">
+            <div class="m-body">
+                <span></span>
+                <div class="input">
+                    <input type="text" id="login" placeholder="Логин">
+                    <span></span>
+                </div>
+                <div class="input">
+                    <input type="password" id="password" placeholder="Пароль">
+                    <span></span>
+                </div>
+                <a href="#" class="link">Забыли пароль</a>
+                <input type="button" value="Войти" onclick="">
+            </div>
+            <div class="close-modal" onclick="Modal(2);"></div>
+        </div>
         <div class="workspace">
             <ul class="header-menu not-selected">
                 <li>
@@ -17,7 +33,7 @@
 		            </ul>
                 </li>
                 <li class="right">
-                    <a href="#">Создать расписание</a>
+                    <a href="#" onclick="Modal(1);">Создать расписание</a>
                 </li>
             </ul>
             <div class="message-box not-selected"></div>

@@ -12,3 +12,39 @@
     min-height: 100%;
     position: absolute;
 }
+
+.modal > .m-body > span:before {
+    font-family: 'FontAwesome';
+    content: "\f2bd";
+    font-size: 150px;
+    text-align: center;
+    display: block;
+    color: #747474;
+}
+
+.modal > .m-body > .input {
+    margin: 25px auto 0 auto;
+}
+
+.modal > .m-body > input[type="button"] {
+    margin: 25px 50px 0 0;
+}
+
+.modal > .m-body {
+    padding-bottom: 95px;
+    position: relative;
+    z-index: 500;
+}
+
+.modal > .m-body > .link {
+    float: left;
+    margin: 35px 0 0 50px;
+}
+
+.modal > .close-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

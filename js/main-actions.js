@@ -36,3 +36,17 @@ function GetMessage(lev, str) {
 		break;
 	}
 }
+
+function Modal(closeOrOpen) {
+    switch (closeOrOpen) {
+        case 1:
+            $('.modal').css('display', 'block');
+            $('.modal').animate({'opacity': '1'}, 'fast');
+        break;
+        case 2:
+            $('.modal').animate({'opacity': '0'}, 'fast', function() {
+                $('.modal').css('display', 'none');
+            })
+        break;
+    }
+}

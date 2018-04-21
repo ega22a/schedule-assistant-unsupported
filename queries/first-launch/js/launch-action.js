@@ -39,8 +39,7 @@ function ConnectToDB() {
                         document.getElementById('requestWord_1').innerHTML = data['manager_secret_word_1'];
                         document.getElementById('requestWord_2').innerHTML = data['manager_secret_word_2'];
                         document.getElementById('requestWord_3').innerHTML = data['manager_secret_word_3'];
-                        $('.absolute-message').css('display', 'block');
-                        $('.absolute-message').animate({'opacity': '1'}, 'fast');
+                        Modal(1);
                     break;
                 }
             }
@@ -50,8 +49,8 @@ function ConnectToDB() {
 
 function continueInstalation() {
 	if (confirm("Вы уверены, что можно продолжить?")) {
-		$('.absolute-message').animate({'opacity': '0'}, 'fast', function() {
-            $('.absolute-message').css('display', 'none');
+		$('.modal').animate({'opacity': '0'}, 'fast', function() {
+            $('.modal').css('display', 'none');
             $('#removeForm').animate({'opacity': '0'}, 'fast', function() {
                 $('#removeForm').remove();
                 var form = document.createElement('form');
