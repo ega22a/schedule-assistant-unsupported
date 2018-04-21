@@ -13,7 +13,12 @@
     position: absolute;
 }
 
-.modal > .m-body > span:before {
+.modal > .m-body > form {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.modal > .m-body > form > span:before {
     font-family: 'FontAwesome';
     content: "\f2bd";
     font-size: 150px;
@@ -22,12 +27,12 @@
     color: #747474;
 }
 
-.modal > .m-body > .input {
+.modal > .m-body > form > .input {
     margin: 25px auto 0 auto;
 }
 
-.modal > .m-body > input[type="button"] {
-    margin: 25px 50px 0 0;
+.modal > .m-body > form > input[type="button"] {
+    margin: 25px 25px 0 0;
 }
 
 .modal > .m-body {
@@ -36,9 +41,9 @@
     z-index: 500;
 }
 
-.modal > .m-body > .link {
+.modal > .m-body > form > .link {
     float: left;
-    margin: 35px 0 0 50px;
+    margin: 35px 0 0 25px;
 }
 
 .modal > .close-modal {
