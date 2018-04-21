@@ -289,6 +289,7 @@
                 `secret_word_1` TEXT NOT NULL,
                 `secret_word_2` TEXT NOT NULL,
                 `secret_word_3` TEXT NOT NULL,
+                `fingerprints` TEXT,
                 `email` TEXT,
                 PRIMARY KEY (`id`)
             );
@@ -307,6 +308,7 @@
                 `secret_word_1`,
                 `secret_word_2`,
                 `secret_word_3`,
+                `fingerprints`,
                 `email`
             )
             VALUES (
@@ -316,6 +318,7 @@
                 '$manager_secret_word[0]',
                 '$manager_secret_word[1]',
                 '$manager_secret_word[2]',
+                NULL,
                 NULL
             );
         ";

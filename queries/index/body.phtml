@@ -1,4 +1,6 @@
 <?php
+    require_once 'queries/Mobile-Detect-2.8.31/Mobile_Detect.php';
+
     echo '
         <div class="modal">
             <div class="m-body">
@@ -33,10 +35,17 @@
 				        	<a href="#">Печать</a>
 			            </li>
 		            </ul>
-                </li>
-                <li class="right">
-                    <a href="#" onclick="Modal(1);">Создать расписание</a>
-                </li>
+                </li>';
+    $detect = new Mobile_Detect;
+    if (!$detect -> isMobile()) {
+        echo '
+            <li class="right">
+                <a href="#" onclick="Modal(1);">Создать расписание</a>
+            </li>
+        ';
+    }
+
+    echo '
             </ul>
             <div class="message-box not-selected"></div>
             
