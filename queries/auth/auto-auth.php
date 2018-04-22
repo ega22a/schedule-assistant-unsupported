@@ -1,10 +1,16 @@
 <?php
+    // Представление страницы, как JSON-объект
+    header('Content-Type: application/json');
+
+    // Объявление массива, в котором будет собираться ответ
+    $answer = [];
+
     // Объявляем авторизационные переменные
     $digest = $_COOKIE['digest'];
     $fingerprint = $_POST['fingerprint'];
 
     // Совершаем соединение к БД
-    require_once  $_SERVER['DOCUMENT_ROOT'] . '/config/MySQL/connect.php';
+    require_once  $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
 
     // Выполняем запрос на поиск контент-менеджера, формируем ответ в виде массива
     $query = "SELECT * FROM `managers` WHERE `manager_digest` = '$digest'";
@@ -16,13 +22,16 @@
     $fingerprintExsist = FALSE;
     foreach ($fingerprints as $value) {
         if ($value == $fingerprint) {
-            // Если отпечаток есть, переключаем триггер
+            // Если отпечаток есть, переключаем триггер, пакуем пустой ответ
             $fingerprintExsist = TRUE;
+            $answer['loc'] = '';
         }
     }
     if (!$fingerprintExsist) {
-        echo '<script type="text/javascript">document.location = \'suspicion\';</script>';
+        $answer['loc'] = '/queries/auth/suspicion';
     }
 
+    // Закрытие сессии с БД и вывод ответа от сервера в формате JSON
     $MySQL -> close();
+    echo json_encode($answer);
 ?>

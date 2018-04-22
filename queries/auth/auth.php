@@ -51,8 +51,7 @@
                 }
                 else {
                     // Если нет, то вносим отпечаток в список, а затем в БД, а также авторизируем пользователя
-                    $result['fingerprints'] .= $fingerprint . ';';
-                    $thumb = $result;
+                    $thumb = $result['fingerprints'] . $fingerprint . ';';
                     $query = "UPDATE `managers` SET `fingerprints` = '$thumb' WHERE `managers`.`manager_login` = '$login'";
                     $MySQL -> query($query);
                     setcookie('digest', $result['manager_digest'], time() + 31557600, "/");

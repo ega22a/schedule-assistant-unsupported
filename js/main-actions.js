@@ -1,3 +1,23 @@
+$(document).ready(function(){
+    var fingerprint = '';
+    new Fingerprint2().get(function(result) {
+        fingerprint = result;
+    });
+    setInterval(function(){
+        $.post(
+            '/queries/auth/auto-auth.php',
+            {
+                'fingerprint': fingerprint
+            },
+            function (data) {
+                if (data['loc'] != '') {
+                    document.location = data['loc'];
+                }
+            }
+        )
+    }, 1000);
+})
+
 function DelSomething(id, timeout) {
 	setTimeout(function(){
 		$('#' + id).animate({"opacity": "0"}, "fast", function(){
@@ -55,29 +75,31 @@ function Auth(exit) {
     var login = document.getElementById('login').value.trim(),
         password = document.getElementById('password').value.trim();
     if (!exit) {
-        var fingerprint;
+        var fingerprint = '';
         new Fingerprint2().get(function(result) {
             fingerprint = result;
         });
-        $.post(
-            'queries/auth/auth.php',
-            {
-                'login': login,
-                'password': password,
-                'fingerprint': fingerprint
-
-            },
-            function (data) {
-                switch (data['errno']) {
-                    case 0:
-                        GetMessage(3, 'Вы ввели неправильно логин или пароль!');
-                    break;
-                    case 2:
-                        location.reload();
-                    break;
+        setTimeout(function() {
+            $.post(
+                'queries/auth/auth.php',
+                {
+                    'login': login,
+                    'password': password,
+                    'fingerprint': fingerprint
+    
+                },
+                function (data) {
+                    switch (data['errno']) {
+                        case 0:
+                            GetMessage(3, 'Вы ввели неправильно логин или пароль!');
+                        break;
+                        case 2:
+                            location.reload();
+                        break;
+                    }
                 }
-            }
-        )
+            )
+        }, 1000)
     }
     else {
 
