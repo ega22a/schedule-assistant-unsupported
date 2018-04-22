@@ -11,7 +11,7 @@ function Check() {
     new Fingerprint2().get(function(result) {
         fingerprint = result;
     });
-    setInterval(function(){
+    setTimeout  (function(){
         $.post(
             'check.php',
             {

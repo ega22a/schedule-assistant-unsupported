@@ -37,13 +37,22 @@
 		            </ul>
                 </li>';
     $detect = new Mobile_Detect;
-    if (!$detect -> isMobile()) {
-        echo '
+        if (isAuth) {
+            echo '
             <li class="right">
-                <a href="#" onclick="Modal(1);">Создать расписание</a>
+                <a href="#" onclick="">Выйти</a>
             </li>
         ';
-    }
+        }
+        else {
+            if (!$detect -> isMobile()) {
+                echo '
+                    <li class="right">
+                        <a href="#" onclick="Modal(1);">Создать расписание</a>
+                    </li>
+                ';
+            }
+        }
 
     echo '
             </ul>
@@ -53,5 +62,6 @@
                 <div class="non-selected img"></div>
             </div>
         </div>
+    </html>
     ';
 ?>
