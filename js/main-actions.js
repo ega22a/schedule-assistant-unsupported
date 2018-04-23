@@ -1,23 +1,3 @@
-$(document).ready(function(){
-    var fingerprint = '';
-    new Fingerprint2().get(function(result) {
-        fingerprint = result;
-    });
-    setInterval(function(){
-        $.post(
-            '/queries/auth/auto-auth.php',
-            {
-                'fingerprint': fingerprint
-            },
-            function (data) {
-                if (data['loc'] != '') {
-                    document.location = data['loc'];
-                }
-            }
-        )
-    }, 1000);
-})
-
 function DelSomething(id, timeout) {
 	setTimeout(function(){
 		$('#' + id).animate({"opacity": "0"}, "fast", function(){
@@ -57,25 +37,35 @@ function GetMessage(lev, str) {
 	}
 }
 
-function Modal(closeOrOpen) {
+function Modal(closeOrOpen, type) {
     switch (closeOrOpen) {
         case 1:
+            $.post(
+                'queries/index/modal.php',
+                {
+                    'mNumber': type
+                },
+                function(data) {
+                    document.getElementsByClassName('modal')[0].innerHTML = data;
+                }
+            )
             $('.modal').css('display', 'block');
             $('.modal').animate({'opacity': '1'}, 'fast');
         break;
         case 2:
             $('.modal').animate({'opacity': '0'}, 'fast', function() {
                 $('.modal').css('display', 'none');
+                document.getElementsByClassName('modal')[0].innerHTML = '';
             })
         break;
     }
 }
 
 function Auth(exit) {
-    var login = document.getElementById('login').value.trim(),
-        password = document.getElementById('password').value.trim();
     if (!exit) {
-        var fingerprint = '';
+        var login = document.getElementById('login').value.trim(),
+            password = document.getElementById('password').value.trim(),
+            fingerprint = '';
         new Fingerprint2().get(function(result) {
             fingerprint = result;
         });
@@ -102,6 +92,10 @@ function Auth(exit) {
         }, 1000)
     }
     else {
-
+        if (confirm("Вы уверены, что Вы хотите выйти?")) {
+            var date = new Date(0);
+            document.cookie = "digest=; path=/; expires=" + date.toUTCString();
+            location.reload();
+        }
     }
 }

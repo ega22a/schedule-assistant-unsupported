@@ -1,0 +1,106 @@
+<?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/queries/Mobile-Detect-2.8.31/Mobile_Detect.php';
+    echo '
+        <ul class="header-menu not-selected">
+        <li>
+            <a href="#">Расписание</a>
+            <ul class="header-menu-submenu">
+                <li>
+                    <a href="#">Группы</a>
+                </li>
+                <li>
+                    <a href="#">Преподаватели</a>
+                </li>
+                <li>
+                    <a href="#">Печать</a>
+                </li>';
+    if ($isAuth) {
+        echo '
+            <li>
+                <a href="/queries/schedule/create">Создать</a>
+            </li>
+        ';
+    }
+            
+    echo '
+            </ul>
+        </li>';
+    $detect = new Mobile_Detect;
+    if ($isAuth) {
+        echo '
+        <li>
+            <a href="#">Преподаватели</a>
+                <ul class="header-menu-submenu">
+            <li>
+                <a href="/queries/teachers/view">Посмотреть</a>
+            </li>
+            <li>
+                <a href="/queries/teachers/edit">Изменить</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">Группы</a>
+        <ul class="header-menu-submenu">
+            <li>
+                <a href="/queries/groups/view">Посмотреть</a>
+            </li>
+            <li>
+                <a href="/queries/groups/edit">Изменить</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">Корпуса</a>
+        <ul class="header-menu-submenu">
+        <li>
+        <a href="/queries/buildings/view">Посмотреть</a>
+    </li>
+    <li>
+        <a href="/queries/buildings/edit">Изменить</a>
+    </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">Кабинеты</a>
+        <ul class="header-menu-submenu">
+            <li>
+                <a href="/queries/classrooms/view">Посмотреть</a>
+            </li>
+            <li>
+                <a href="/queries/classrooms/edit">Изменить</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="/queries/settings">Настройки</a>
+    </li>
+    <li class="right">
+        <a href="#" onclick="Auth(true);">Выйти</a>
+    </li>
+    ';
+    foreach (glob($_SERVER['DOCUMENT_ROOT'] . "/queries/*/edit/index.php") as $path) {
+
+        if ($_SERVER['SCRIPT_FILENAME'] == $path) {
+            echo '
+                <li class="right">
+                    <a href="#" onclick="PushInDB();">Сохранить</a>
+                </li>
+            ';
+        }
+    }
+    }
+    else {
+        if (!$detect -> isMobile()) {
+            echo '
+            <li class="right">
+                <a href="#" onclick="Modal(1, 1);">Войти</a>
+            </li>
+        ';
+        }
+    }
+    echo '
+        </ul>
+    ';
+
+?>

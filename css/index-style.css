@@ -31,7 +31,7 @@
     margin: 25px auto 0 auto;
 }
 
-.modal > .m-body > form > input[type="button"] {
+.modal > .m-body > form > input[type="submit"] {
     margin: 25px 25px 0 0;
 }
 

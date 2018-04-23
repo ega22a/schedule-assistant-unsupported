@@ -1,59 +1,8 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/queries/Mobile-Detect-2.8.31/Mobile_Detect.php';
-
     echo '
-        <div class="modal">
-            <div class="m-body">
-                <form>
-                    <span></span>
-                    <div class="input">
-                        <input type="text" id="login" placeholder="Логин">
-                        <span></span>
-                    </div>
-                    <div class="input">
-                        <input type="password" id="password" placeholder="Пароль">
-                        <span></span>
-                    </div>
-                    <a href="#" class="link">Забыли пароль</a>
-                    <input type="button" value="Войти" onclick="Auth(false);">
-                </form>
-            </div>
-            <div class="close-modal" onclick="Modal(2);"></div>
-        </div>
-        <div class="workspace">
-            <ul class="header-menu not-selected">
-                <li>
-			        <a href="#">Расписание</a>
-			        <ul class="header-menu-submenu">
-				        <li>
-			            	<a href="#">Группы</a>
-			            </li>
-			            <li>
-			            	<a href="#">Преподаватели</a>
-				        </li>
-				        <li>
-				        	<a href="#">Печать</a>
-			            </li>
-		            </ul>
-                </li>';
-    $detect = new Mobile_Detect;
-        if (isAuth) {
-            echo '
-            <li class="right">
-                <a href="#" onclick="">Выйти</a>
-            </li>
-        ';
-        }
-        else {
-            if (!$detect -> isMobile()) {
-                echo '
-                    <li class="right">
-                        <a href="#" onclick="Modal(1);">Создать расписание</a>
-                    </li>
-                ';
-            }
-        }
-
+        <div class="modal"></div>
+        <div class="workspace">';
+    include($_SERVER['DOCUMENT_ROOT'] . '/queries/index/h-menu.phtml');
     echo '
             </ul>
             <div class="message-box not-selected"></div>
