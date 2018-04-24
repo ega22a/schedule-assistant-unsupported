@@ -1,4 +1,5 @@
-var del = [];
+var del = [],
+    ret = [];
 
 $(document).ready(function(){
     $('.new-teacher').click(function(){
@@ -14,34 +15,36 @@ $(document).ready(function(){
 
 function PushInDB() {
     var teacherArray = [];
-    if (document.getElementsByClassName('teacher-card').length == 1) {
-		GetMessage(3, "Создайте хотя-бы одного преподавателя!")
-    }
-    else {
-        for (var i = 0; i < document.getElementsByClassName('teacher-card').length - 1; i++) {
-            var thumbArray = [];
-            for (var j = 0; j < 3; j++) {
-				if (document.getElementsByClassName('teacher-card')[i].children[j].children[0].value.trim() == '') {
-					GetMessage(2, "Некоторые поля не были заполнены.");
-					return false;
-				}
-				else {
-                    thumbArray[j] = document.getElementsByClassName('teacher-card')[i].children[j].children[0].value.trim();
-                    if (document.getElementsByClassName('teacher-card')[i].hasAttribute('db')) {
-                        thumbArray[3] = parseInt(document.getElementsByClassName('teacher-card')[i].getAttribute('db'));
-                    }
-				}
-            }
-            teacherArray[i] = thumbArray;
-            console.log(thumbArray);
+    for (var i = 0; i < document.getElementsByClassName('teacher-card').length - 1; i++) {
+        var thumbArray = [];
+        for (var j = 0; j < 3; j++) {
+			if (document.getElementsByClassName('teacher-card')[i].children[j].children[0].value.trim() == '') {
+				GetMessage(2, "Некоторые поля не были заполнены.");
+				return false;
+			}
+			else {
+                thumbArray[j] = document.getElementsByClassName('teacher-card')[i].children[j].children[0].value.trim();
+                if (document.getElementsByClassName('teacher-card')[i].hasAttribute('db')) {
+                    thumbArray[3] = parseInt(document.getElementsByClassName('teacher-card')[i].getAttribute('db'));
+                }
+	        }
         }
-        console.log(del);
-        $.post(
-            '../actions/push.php',
-            {
-                'teachers': teacherArray,
-                'del-id': del
-            }
-        )
+        teacherArray[i] = thumbArray;
     }
+    $.post(
+        '../actions/push.php',
+        {
+            'teachers': teacherArray,
+            'del-id': del
+        }
+    )
+}
+
+function ReturnOutDB() {
+    $.post(
+        '../actions/return.php',
+        {
+            'teachers': ret
+        }
+    )
 }

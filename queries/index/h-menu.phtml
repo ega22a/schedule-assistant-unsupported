@@ -32,7 +32,7 @@
             <a href="#">Преподаватели</a>
                 <ul class="header-menu-submenu">
             <li>
-                <a href="/queries/teachers/view">Посмотреть</a>
+                <a href="/queries/teachers/archive">Архив</a>
             </li>
             <li>
                 <a href="/queries/teachers/edit">Изменить</a>
@@ -43,7 +43,7 @@
         <a href="#">Группы</a>
         <ul class="header-menu-submenu">
             <li>
-                <a href="/queries/groups/view">Посмотреть</a>
+                <a href="/queries/groups/archive">Архив</a>
             </li>
             <li>
                 <a href="/queries/groups/edit">Изменить</a>
@@ -54,7 +54,7 @@
         <a href="#">Корпуса</a>
         <ul class="header-menu-submenu">
         <li>
-        <a href="/queries/buildings/view">Посмотреть</a>
+        <a href="/queries/buildings/archive">Архив</a>
     </li>
     <li>
         <a href="/queries/buildings/edit">Изменить</a>
@@ -65,7 +65,7 @@
         <a href="#">Кабинеты</a>
         <ul class="header-menu-submenu">
             <li>
-                <a href="/queries/classrooms/view">Посмотреть</a>
+                <a href="/queries/classrooms/archive">Архив</a>
             </li>
             <li>
                 <a href="/queries/classrooms/edit">Изменить</a>
@@ -85,6 +85,16 @@
             echo '
                 <li class="right">
                     <a href="#" onclick="PushInDB();">Сохранить</a>
+                </li>
+            ';
+        }
+    }
+    foreach (glob($_SERVER['DOCUMENT_ROOT'] . "/queries/*/archive/index.php") as $path) {
+
+        if ($_SERVER['SCRIPT_FILENAME'] == $path) {
+            echo '
+                <li class="right">
+                    <a href="#" onclick="ReturnOutDB();">Сохранить</a>
                 </li>
             ';
         }

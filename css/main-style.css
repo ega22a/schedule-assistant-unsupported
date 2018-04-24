@@ -267,6 +267,15 @@ input[type="button"]:active, input[type="submit"]:active {
 	top: 3px;
 }
 
+.return {
+    background: #2196f3 !important;
+    box-shadow: 0 3px 0 #1976d2 !important;
+}
+
+.return:active {
+    box-shadow: 0 0 0 #1976d2 !important;
+}
+
 /* Стиль для логотипа */
 .logotype {
     font-family: "Roboto Slab";

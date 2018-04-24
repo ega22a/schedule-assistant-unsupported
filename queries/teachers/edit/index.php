@@ -36,7 +36,7 @@
                     <input type="text" placeholder="Отчество" value="' . $row['middleName'] . '">
                     <span></span>
                 </div>
-                <input type="button" onclick="DelSomething(\'teacher-' . $i . '\'); del.push(' . $row['id'] . ');" value="Удалить">
+                <input type="button" onclick="DelSomething(\'teacher-' . $i . '\'); del.push(' . $row['id'] . ');" value="В архив">
             </div>
             ';
             $i++;
