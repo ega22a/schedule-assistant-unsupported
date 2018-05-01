@@ -2,7 +2,7 @@
     include($_SERVER['DOCUMENT_ROOT'] . '/queries/auth/auto-auth.php');
 
     if ($isAuth) {
-        include ($_SERVER['DOCUMENT_ROOT'] . '/queries/teachers/actions/head.phtml');
+        include ($_SERVER['DOCUMENT_ROOT'] . '/queries/housings/actions/head.phtml');
         echo '
             <div class="modal"></div>
             <div class="workspace">';
@@ -14,7 +14,7 @@
 
         // Совершаем соединение к БД
         require $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
-        $query = "SELECT * FROM `teachers`";
+        $query = "SELECT * FROM `housings`";
         $result = $MySQL -> query($query);
 
         $i = 0;
@@ -25,15 +25,11 @@
             echo '
             <div class="card" id="c-' . $i . '" style="opacity: 1;" db="' . $row['id'] . '">
                 <div class="input">
-                    <input type="text" placeholder="Фамилия" value="' . $row['firstName'] . '">
+                    <input type="text" placeholder="Адрес корпуса" value="' . $row['dislocation'] . '">
                     <span></span>
                 </div>
                 <div class="input">
-                    <input type="text" placeholder="Имя" value="' . $row['lastName'] . '">
-                    <span></span>
-                </div>
-                <div class="input">
-                    <input type="text" placeholder="Отчество" value="' . $row['middleName'] . '">
+                    <input type="text" placeholder="Номер корпуса" value="' . $row['numberOfHousing'] . '">
                     <span></span>
                 </div>
                 <input type="button" onclick="DelSomething(\'c-' . $i . '\'); del.push(' . $row['id'] . ');" value="В архив">
@@ -46,7 +42,7 @@
         echo '
 	        <div class="card new-card not-selected">
 		        <span></span>
-		        <p>Добавить ещё одного преподавателя</p>
+		        <p>Добавить ещё один корпус</p>
 	        </div>
             <div class="not-selected img-sub">
                 <div class="not-selected img"></div>

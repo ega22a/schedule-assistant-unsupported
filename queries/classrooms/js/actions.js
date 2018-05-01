@@ -1,0 +1,85 @@
+var del = [],
+    ret = [];
+
+$(document).ready(function(){
+    $('.new-card').click(function(){
+        var i = document.getElementsByClassName('card').length - 1,
+            card = document.createElement('div'),
+            ifExsist = false;
+        card.className = 'card';
+        card.id = 'c-' + i + '-' + i;
+        for (var q = 0; q < i; q++) {
+            if (document.getElementsByClassName('card')[q].id == 'c-' + i + '-' + i) {
+                card.id = 'c-' + q + '-' + i + '-' + q;
+                ifExsist = true;
+            }
+        }
+        if (ifExsist) {
+            card.innerHTML = '<div class="input"><input type="text" placeholder="Номер кабинета"><span></span></div>';
+            $.post (
+                '../actions/get.housings.select.php',
+                {},
+                function (data) {
+                    card.innerHTML += data;
+                }
+            )
+            card.innerHTML += '<input type="button" onclick="DelSomething(\'' + card.id + '\');" value="Удалить">';
+        }
+        else {
+            card.innerHTML = '<div class="input"><input type="text" placeholder="Номер кабинета"><span></span></div>';
+            $.post (
+                '../actions/get.housings.select.php',
+                {},
+                function (data) {
+                    card.innerHTML += data;
+                }
+            )
+            card.innerHTML += '<input type="button" onclick="DelSomething(\'' + 'c-' + q + '-' + i + '\');" value="Удалить">';
+        }
+        $.when($('.new-card').before(card))
+            .done(function(){
+                $(card).animate({"opacity": "1"}, "fast", function() {
+                    turnOnSelect();
+                })
+            })
+    })
+})
+
+function PushInDB() {
+    var pushArr = [];
+    for (var i = 0; i < document.getElementsByClassName('card').length - 1; i++) {
+        var thumbArray = [];
+		if (document.getElementsByClassName('card')[i].children[0].children[0].value.trim() == '') {
+			GetMessage(2, "Некоторые поля не были заполнены.");
+			return false;
+		}
+		else {
+            thumbArray[0] = document.getElementsByClassName('card')[i].children[0].children[0].value.trim();
+            for (j = 0; j < document.getElementsByClassName('card')[i].children[2].children[3].childNodes.length; j++) {
+                if (document.getElementsByClassName('card')[i].children[2].children[3].children[j].className.indexOf('ro-select-item-active') != -1) {
+                    thumbArray[1] = document.getElementsByClassName('card')[i].children[2].children[3].children[j].value;
+                }
+            }
+            if (document.getElementsByClassName('card')[i].hasAttribute('db')) {
+                thumbArray[2] = parseInt(document.getElementsByClassName('card')[i].getAttribute('db'));
+            }
+	    }
+    pushArr[i] = thumbArray;
+    }
+    $.post(
+        '../actions/push.php',
+        {
+            'classrooms': pushArr,
+            'del-id': del
+        }
+    )
+}
+
+function ReturnOutDB() {
+    $.post(
+        '../actions/return.php',
+        {
+            'classrooms': ret
+        }
+    )
+}

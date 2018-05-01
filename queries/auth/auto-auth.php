@@ -17,9 +17,6 @@
     if (!empty($result)) {
         $isAuth = TRUE;
     }
-    else {
-        echo '<script type="text/javascript">document.location = \'/\';</script>';
-    }
 
     // Закрытие сессии с БД
     $MySQL -> close();

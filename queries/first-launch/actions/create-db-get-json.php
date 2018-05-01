@@ -80,30 +80,35 @@
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `firstName` TEXT NOT NULL,
                 `lastName` TEXT NOT NULL,
-                `middleName` TEXT, 
+                `middleName` TEXT,
+                `isDelete` BOOLEAN NOT NULL,
                 PRIMARY KEY (`id`)
             );
             CREATE TABLE `$name`.`disciplines` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `shortName` TEXT NOT NULL,
                 `fullName` TEXT NOT NULL,
+                `isDelete` BOOLEAN NOT NULL,
                 PRIMARY KEY (`id`)
             );
             CREATE TABLE `$name`.`housings` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `dislocation` TEXT NOT NULL,
                 `numberOfHousing` TEXT NOT NULL,
+                `isDelete` BOOLEAN NOT NULL,
                 PRIMARY KEY (`id`)
             );
             CREATE TABLE `$name`.`groups` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `name` TEXT NOT NULL,
+                `isDelete` BOOLEAN NOT NULL,
                 PRIMARY KEY (`id`)
             ); 
             CREATE TABLE `$name`.`classrooms` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfHousing` INT NOT NULL,
                 `NumberOfClassroom` TEXT NOT NULL,
+                `isDelete` BOOLEAN NOT NULL,
                 PRIMARY KEY (`id`),
                 FOREIGN KEY (idOfHousing) REFERENCES housings(id)
             );
@@ -299,6 +304,7 @@
                 `lastName` TEXT NOT NULL,
                 `middleName` TEXT,
                 `position` TEXT NOT NULL,
+                `isDelete` BOOLEAN NOT NULL,
                 PRIMARY KEY (`id`)
             );
             INSERT INTO `managers` (

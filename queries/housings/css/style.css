@@ -2,7 +2,7 @@ h1 {
     margin: 50px 0 25px 25px;
 }
 
-.teacher-card {
+.card {
 	width: 350px;
 	height: 180px;
 	border: 1px solid #dedede;
@@ -14,7 +14,7 @@ h1 {
 	opacity: 0;
 }
 
-.new-teacher {
+.new-card {
 	color: #9e9e9e;
 	cursor: pointer;
 	transition: 350ms ease-in-out;
@@ -22,11 +22,11 @@ h1 {
 	opacity: 1;
 }
 
-.new-teacher:hover {
+.new-card:hover {
 	color: #000000;
 }
 
-.new-teacher > span:after {
+.new-card > span:after {
 	font-family: "FontAwesome";
 	content: "\f055";
 	font-size: 8.7em;
@@ -38,5 +38,23 @@ h1 {
 
 input[type="button"] {
 	background: #EF5350;
-	box-shadow: 0 3px 0 #B71C1C;
+    box-shadow: 0 3px 0 #B71C1C;
+    margin-top: 16%;
+}
+
+.wall-text {
+    font-size: 2em;
+    text-align: center;
+    display: block;
+    color: #808080;
+}
+
+.wall:before {
+    font-family: "FontAwesome";
+    content: "\f1ad";
+    font-size: 20em;
+    color: #808080;
+    text-align: center;
+    display: block;
+    margin-top: 50px;
 }

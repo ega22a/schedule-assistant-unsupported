@@ -2,7 +2,7 @@
     include($_SERVER['DOCUMENT_ROOT'] . '/queries/auth/auto-auth.php');
 
     if ($isAuth) {
-        include ($_SERVER['DOCUMENT_ROOT'] . '/queries/teachers/actions/head.phtml');
+        include ($_SERVER['DOCUMENT_ROOT'] . '/queries/administration/actions/head.phtml');
         echo '
             <div class="modal"></div>
             <div class="workspace">';
@@ -10,11 +10,11 @@
         echo '
             </ul>
             <div class="message-box not-selected"></div>
-            <h1 class="not-selected">Архив преподавателей</h1>';
+            <h1 class="not-selected">Архив администрации</h1>';
 
         // Совершаем соединение к БД
         require $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
-        $query = "SELECT * FROM `teachers`";
+        $query = "SELECT * FROM `administration`";
         $result = $MySQL -> query($query);
 
         $i = 0;
@@ -32,6 +32,10 @@
                         </div>
                         <div class="input">
                             <input type="text" readonly value="' . $row['middleName'] . '">
+                            <span></span>
+                        </div>
+                        <div class="input">
+                            <input type="text" readonly value="' . $row['position'] . '">
                             <span></span>
                         </div>
                         <input type="button" class="return" onclick="DelSomething(\'с-' . $i . '\');  ret.push(' . $row['id'] . ');" value="Из архива">

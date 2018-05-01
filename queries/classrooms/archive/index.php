@@ -2,7 +2,7 @@
     include($_SERVER['DOCUMENT_ROOT'] . '/queries/auth/auto-auth.php');
 
     if ($isAuth) {
-        include ($_SERVER['DOCUMENT_ROOT'] . '/queries/teachers/actions/head.phtml');
+        include ($_SERVER['DOCUMENT_ROOT'] . '/queries/classrooms/actions/head.phtml');
         echo '
             <div class="modal"></div>
             <div class="workspace">';
@@ -10,28 +10,28 @@
         echo '
             </ul>
             <div class="message-box not-selected"></div>
-            <h1 class="not-selected">Архив преподавателей</h1>';
+            <h1 class="not-selected">Архив кабинетов</h1>';
 
         // Совершаем соединение к БД
         require $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
-        $query = "SELECT * FROM `teachers`";
+        $query = "SELECT * FROM `classrooms`";
         $result = $MySQL -> query($query);
 
         $i = 0;
         while ($row = $result -> fetch_assoc()) {
+            $thumb_result = $result['idOfHousing'];
+            $sec_query = "SELECT * FROM `housings` WHERE id = $thumb_result";
+            $sec_query = $MySQL -> query($sec_query);
+            $sec_query = $sec_query -> fetch_array(MYSQLI_ASSOC);
             if ($row['isDelete']) {
                 echo '
                     <div class="card" id="с-' . $i . '" style="opacity: 1;">
                         <div class="input">
-                            <input type="text" readonly value="' . $row['firstName'] . '">
+                            <input type="text" readonly value="Корпус: ' . $sec_query['numberOfHousing'] . '">
                             <span></span>
                         </div>
                         <div class="input">
-                            <input type="text" readonly value="' . $row['lastName'] . '">
-                            <span></span>
-                        </div>
-                        <div class="input">
-                            <input type="text" readonly value="' . $row['middleName'] . '">
+                            <input type="text" readonly value="' . $row['NumberOfClassroom'] . '">
                             <span></span>
                         </div>
                         <input type="button" class="return" onclick="DelSomething(\'с-' . $i . '\');  ret.push(' . $row['id'] . ');" value="Из архива">
