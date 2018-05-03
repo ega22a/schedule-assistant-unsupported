@@ -38,9 +38,7 @@ $(document).ready(function(){
         }
         $.when($('.new-card').before(card))
             .done(function(){
-                $(card).animate({"opacity": "1"}, "fast", function() {
-                    turnOnSelect();
-                })
+                $(card).animate({"opacity": "1"}, "fast");
             })
     })
 })
@@ -55,9 +53,9 @@ function PushInDB() {
 		}
 		else {
             thumbArray[0] = document.getElementsByClassName('card')[i].children[0].children[0].value.trim();
-            for (j = 0; j < document.getElementsByClassName('card')[i].children[2].children[3].childNodes.length; j++) {
-                if (document.getElementsByClassName('card')[i].children[2].children[3].children[j].className.indexOf('ro-select-item-active') != -1) {
-                    thumbArray[1] = document.getElementsByClassName('card')[i].children[2].children[3].children[j].value;
+            for (j = 1; j < document.getElementsByClassName('card')[i].children[2].children[0].children.length; j++) {
+                if (document.getElementsByClassName('card')[i].children[2].children[0].children[j].selected) {
+                    thumbArray[1] = document.getElementsByClassName('card')[i].children[2].children[0].children[j].value;
                 }
             }
             if (document.getElementsByClassName('card')[i].hasAttribute('db')) {

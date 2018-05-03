@@ -326,51 +326,19 @@ input[type="button"]:active, input[type="submit"]:active {
 
 /* Селектор */
 
-.ro-select-wrapper {
-    display: block;
-    position: relative;
+.mdl-selectfield {
+    margin-top: 15px;
+    height: 35px;
+}
+
+.mdl-selectfield > select {
     width: 100%;
-  }
-  .ro-select-text {
+    height: 100%;
     border: none;
-    border-bottom: 1px solid #888888;
-    display: block;
-    max-height: 48px;
-    padding: 16px 24px 8px 0;
+    border-bottom: 1px solid #bdbdbd;
     cursor: pointer;
-  }
-  .ro-select-text.ro-select-text-empty {
-    color: #cccccc;
-  }
-  .ro-select-caret {
-    position: absolute;
-    right: 8px;
-    top: 20px;
-    color: #888888;
-  }
-  .ro-select-list {
-    user-select: none;
-    position: absolute;
-    transition: 0.25s ease;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: none;
-    list-style: none;
-    margin: 0;
-    padding: 8px 0;
-    background-color: white;
-    box-shadow: 0 3px 10px #adadad;
-  }
-  .ro-select-list > .ro-select-item {
-    padding: 0 16px;
-    line-height: 48px;
-    cursor: pointer;
-  }
-  .ro-select-list > .ro-select-item:hover {
-    background-color: #eaeaea;
-  }
-  .ro-select-list > .ro-select-item.ro-select-item-active {
-    background: #eaeaea;
-  }
-  
+}
+
+.mdl-selectfield > select:focus {
+    outline: none;
+}

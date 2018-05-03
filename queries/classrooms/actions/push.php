@@ -11,12 +11,12 @@
             $result = $MySQL -> query($query);
             $result = $result -> fetch_array(MYSQLI_ASSOC);
             if ($classroom[0] != $result['idOfHousing'] || $classroom[1] != $result['NumberOfClassroom']) {
-                $query = "UPDATE `classroom` SET `idOfHousing` = '$classroom[0]', `NumberOfClassroom` = '$classroom[1]' WHERE `id` = $classroom[2]";
+                $query = "UPDATE `classrooms` SET `idOfHousing` = '$classroom[1]', `NumberOfClassroom` = '$classroom[0]' WHERE `id` = $classroom[2]";
                 $MySQL -> query($query);
             }
         }
         if (count($classroom) == 2) {
-            $query = "INSERT INTO `classrooms` (`idOfHousing`, `NumberOfClassroom`, `isDelete`) VALUES ('$classroom[0]', '$classroom[1]', 0)";
+            $query = "INSERT INTO `classrooms` (`idOfHousing`, `NumberOfClassroom`, `isDelete`) VALUES ('$classroom[1]', '$classroom[0]', 0)";
             $MySQL -> query($query);
         }
     }

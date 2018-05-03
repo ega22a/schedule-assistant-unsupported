@@ -20,8 +20,16 @@
         $i = 0;
         while ($row = $result -> fetch_assoc()) {
             if ($row['isDelete']) {
+                $thumb_result = $row['idOfHousing'];
+                $sec_query = "SELECT * FROM `housings` WHERE id = $thumb_result";
+                $sec_query = $MySQL -> query($sec_query);
+                $sec_query = $sec_query -> fetch_array(MYSQLI_ASSOC);
                 echo '
                     <div class="card" id="с-' . $i . '" style="opacity: 1;">
+                        <div class="input">
+                            <input type="text" readonly value="Корпус: ' . $sec_query['numberOfHousing'] . '">
+                            <span></span>
+                        </div>
                         <div class="input">
                             <input type="text" readonly value="' . $row['name'] . '">
                             <span></span>

@@ -15,13 +15,31 @@ $(document).ready(function(){
             }
         }
         if (ifExsist) {
-            card.innerHTML = '<div class="input"><input type="text" placeholder="Имя группы"><input type="button" onclick="DelSomething(\'' + card.id + '\');" value="Удалить">';
+            card.innerHTML = '<div class="input"><input type="text" placeholder="Имя группы"><span></span></div>';
+            $.post (
+                '../actions/get.housings.select.php',
+                {},
+                function (data) {
+                    card.innerHTML += data;
+                }
+            )
+            card.innerHTML += '<input type="button" onclick="DelSomething(\'' + card.id + '\');" value="Удалить">';
         }
         else {
-            card.innerHTML = '<div class="input"><input type="text" placeholder="Имя группы"><input type="button" onclick="DelSomething(\'c-' + i + '-' + i + '\');" value="Удалить">';
+            card.innerHTML = '<div class="input"><input type="text" placeholder="Имя группы"><span></span></div>';
+            $.post (
+                '../actions/get.housings.select.php',
+                {},
+                function (data) {
+                    card.innerHTML += data;
+                }
+            )
+            card.innerHTML += '<input type="button" onclick="DelSomething(\'' + 'c-' + q + '-' + i + '\');" value="Удалить">';
         }
-        $('.new-card').before(card);
-        $(card).animate({"opacity": "1"}, "fast");
+        $.when($('.new-card').before(card))
+            .done(function(){
+                $(card).animate({"opacity": "1"}, "fast");
+            })
     })
 })
 
@@ -31,15 +49,20 @@ function PushInDB() {
         var thumbArray = [];
 		if (document.getElementsByClassName('card')[i].children[0].children[0].value.trim() == '') {
 			GetMessage(2, "Некоторые поля не были заполнены.");
-		    return false;
+			return false;
 		}
 		else {
             thumbArray[0] = document.getElementsByClassName('card')[i].children[0].children[0].value.trim();
+            for (j = 1; j < document.getElementsByClassName('card')[i].children[2].children[0].children.length; j++) {
+                if (document.getElementsByClassName('card')[i].children[2].children[0].children[j].selected) {
+                    thumbArray[1] = document.getElementsByClassName('card')[i].children[2].children[0].children[j].value;
+                }
+            }
             if (document.getElementsByClassName('card')[i].hasAttribute('db')) {
-                thumbArray[1] = parseInt(document.getElementsByClassName('card')[i].getAttribute('db'));
+                thumbArray[2] = parseInt(document.getElementsByClassName('card')[i].getAttribute('db'));
             }
 	    }
-        pushArr[i] = thumbArray;
+    pushArr[i] = thumbArray;
     }
     $.post(
         '../actions/push.php',

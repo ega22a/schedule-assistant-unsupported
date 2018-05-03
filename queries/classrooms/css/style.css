@@ -43,6 +43,15 @@ input[type="button"] {
     margin-top: 100px;
 }
 
+.return {
+    margin-top: 55px !important;
+}
+
+.mdl-selectfield {
+    position: absolute;
+    width: 92%;
+}
+
 .wall-text {
     font-size: 2em;
     text-align: center;

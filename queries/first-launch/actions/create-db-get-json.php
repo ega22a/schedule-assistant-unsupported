@@ -101,8 +101,10 @@
             CREATE TABLE `$name`.`groups` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `name` TEXT NOT NULL,
+                `idOfHousing` INT NOT NULL,
                 `isDelete` BOOLEAN NOT NULL,
-                PRIMARY KEY (`id`)
+                PRIMARY KEY (`id`),
+                FOREIGN KEY (idOfHousing) REFERENCES housings(id)
             ); 
             CREATE TABLE `$name`.`classrooms` (
                 `id` INT NOT NULL AUTO_INCREMENT,

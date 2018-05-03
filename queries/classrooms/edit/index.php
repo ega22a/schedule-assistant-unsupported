@@ -10,7 +10,7 @@
         echo '
             </ul>
             <div class="message-box not-selected"></div>
-            <h1 class="not-selected">Добавить корпуса</h1>';
+            <h1 class="not-selected">Добавить кабинеты</h1>';
 
         // Совершаем соединение к БД
         require $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
@@ -48,12 +48,24 @@
                         </div>
                 ';
                 $sec_query = "SELECT * FROM `housings`";
-                $sec_query = $MySQL -> query($sec_query);
-                echo '<select class="custom-select">';
-                while ($s_row = $sec_query -> fetch_assoc()) {
-                    echo '<option value="' . $s_row['id'] . '" ' . ($s_row[id] == $row['idOfHousing']) ? 'selected' : '' . '>Корпус ' . $s_row['NumberOfHousing'] . ' (' . $s_row['dislocation'] . ')</option>';
+                $sec_result = $MySQL -> query($sec_query);
+                echo '
+                    <div class="mdl-selectfield">
+                        <select>
+                            <option disabled selected>Выберите корпус</option>';
+                while ($s_row = $sec_result -> fetch_assoc()) {
+                    $s_id = $s_row['id'];
+                    $s_number = $s_row['numberOfHousing'];
+                    $s_dis = $s_row['dislocation'];
+                    $thumb_row = '';
+                    if ($s_id == $row['idOfHousing']) {
+                        $thumb_row = 'selected';
+                    }
+                    echo "<option value='$s_id' $thumb_row>Корпус $s_number ($s_dis)</option>";
                 }
-                echo '</select>';
+                echo '
+                        </select>
+                    </div>';
                 echo '
                         <input type="button" onclick="DelSomething(\'c-' . $i . '\'); del.push(' . $row['id'] . ');" value="В архив">
                     </div>

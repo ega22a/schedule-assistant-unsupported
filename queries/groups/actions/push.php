@@ -6,17 +6,17 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
 
     foreach ($groups as $group) {
-        if (count($group) == 2) {
-            $query = "SELECT * FROM `groups` WHERE `id` = $group[1]";
+        if (count($group) == 3) {
+            $query = "SELECT * FROM `groups` WHERE `id` = $group[2]";
             $result = $MySQL -> query($query);
             $result = $result -> fetch_array(MYSQLI_ASSOC);
-            if ($group[0] != $result['name']) {
-                $query = "UPDATE `groups` SET `name` = '$group[0]' WHERE `id` = $group[1]";
+            if ($group[0] != $result['name'] || $group[1] != $result['idOfHousing']) {
+                $query = "UPDATE `groups` SET `idOfHousing` = '$group[1]', `NumberOfgroup` = '$group[0]' WHERE `id` = $group[2]";
                 $MySQL -> query($query);
             }
         }
-        if (count($group) == 1) {
-            $query = "INSERT INTO `groups` (`name`, `isDelete`) VALUES ('$group[0]', 0)";
+        if (count($group) == 2) {
+            $query = "INSERT INTO `groups` (`idOfHousing`, `name`, `isDelete`) VALUES ('$group[1]', '$group[0]', 0)";
             $MySQL -> query($query);
         }
     }
