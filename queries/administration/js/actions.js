@@ -49,6 +49,9 @@ function PushInDB() {
         {
             'administration': pushArr,
             'del-id': del
+        },
+        function() {
+            GetMessage(1, 'Записи успешно внесены!');
         }
     )
 }
@@ -58,6 +61,9 @@ function ReturnOutDB() {
         '../actions/return.php',
         {
             'administration': ret
+        },
+        function() {
+            GetMessage(1, 'Некоторые записи были возвращены!');
         }
     )
 }

@@ -10,13 +10,13 @@
             $query = "SELECT * FROM `teachers` WHERE `id` = $teacher[3]";
             $result = $MySQL -> query($query);
             $result = $result -> fetch_array(MYSQLI_ASSOC);
-            if ($teacher[0] != $result['firstName'] || $teacher[1] != $result['lastName'] || $teacher[2] != $result['middleName']) {
-                $query = "UPDATE `teachers` SET `firstName` = '$teacher[0]', `lastName` = '$teacher[1]', `middleName` = '$teacher[2]' WHERE `id` = $teacher[3]";
+            if ($teacher[0] != $result['lastName'] || $teacher[1] != $result['firstName'] || $teacher[2] != $result['middleName']) {
+                $query = "UPDATE `teachers` SET `lastName` = '$teacher[0]', `firstName` = '$teacher[1]', `middleName` = '$teacher[2]' WHERE `id` = $teacher[3]";
                 $MySQL -> query($query);
             }
         }
         if (count($teacher) == 3) {
-            $query = "INSERT INTO `teachers` (`firstName`, `lastName`, `middleName`, `isDelete`) VALUES ('$teacher[0]', '$teacher[1]', '$teacher[2]', 0)";
+            $query = "INSERT INTO `teachers` (`lastName`, `firstName`, `middleName`, `isDelete`) VALUES ('$teacher[0]', '$teacher[1]', '$teacher[2]', 0)";
             $MySQL -> query($query);
         }
     }

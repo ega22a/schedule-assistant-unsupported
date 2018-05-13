@@ -17,7 +17,7 @@
     if ($isAuth) {
         echo '
             <li>
-                <a href="/queries/schedule/create">Создать</a>
+                <a href="/schedule/create">Создать</a>
             </li>
         ';
     }
@@ -120,6 +120,13 @@
                 </li>
             ';
         }
+    }
+    if ($_SERVER['SCRIPT_FILENAME'] == $_SERVER['DOCUMENT_ROOT'] . "/schedule/create/index.php") {
+        echo '
+            <li class="right">
+                <a href="#" onclick="saveSchedule();">Сохранить</a>
+            </li>
+        ';
     }
     }
     else {

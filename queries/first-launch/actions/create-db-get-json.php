@@ -114,7 +114,7 @@
                 PRIMARY KEY (`id`),
                 FOREIGN KEY (idOfHousing) REFERENCES housings(id)
             );
-            CREATE TABLE `$name`.`mFirstLessons` (
+            CREATE TABLE `$name`.`mLessons0` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -124,7 +124,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`mSecondLessons` (
+            CREATE TABLE `$name`.`mLessons1` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -134,7 +134,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`mThirdLessons` (
+            CREATE TABLE `$name`.`mLessons2` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -144,7 +144,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`mFourthLessons` (
+            CREATE TABLE `$name`.`mLessons3` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -154,7 +154,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`mFifthLessons` (
+            CREATE TABLE `$name`.`mLessons4` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -164,7 +164,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`mSixthLessons` (
+            CREATE TABLE `$name`.`mLessons5` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -174,7 +174,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`mSeventhLessons` (
+            CREATE TABLE `$name`.`mLessons6` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -184,7 +184,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`sFirstLessons` (
+            CREATE TABLE `$name`.`sLessons0` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -194,7 +194,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`sSecondLessons` (
+            CREATE TABLE `$name`.`sLessons1` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -204,7 +204,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`sThirdLessons` (
+            CREATE TABLE `$name`.`sLessons2` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -214,7 +214,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`sFourthLessons` (
+            CREATE TABLE `$name`.`sLessons3` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -224,7 +224,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`sFifthLessons` (
+            CREATE TABLE `$name`.`sLessons4` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -234,7 +234,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`sSixthLessons` (
+            CREATE TABLE `$name`.`sLessons5` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -244,7 +244,7 @@
                 FOREIGN KEY (idOfDiscipline) REFERENCES disciplines(id),
                 FOREIGN KEY (idOfClassroom) REFERENCES classrooms(id)
             );
-            CREATE TABLE `$name`.`sSeventhLessons` (
+            CREATE TABLE `$name`.`sLessons6` (
                 `id` INT NOT NULL AUTO_INCREMENT,
                 `idOfTeacher` INT NOT NULL,
                 `idOfDiscipline` INT NOT NULL,
@@ -256,37 +256,46 @@
             );
             CREATE TABLE `$name`.`mSchedule` (
                 `id` INT NOT NULL AUTO_INCREMENT,
-                `first` INT NOT NULL,
-                `second` INT NOT NULL,
-                `third` INT NOT NULL,
-                `fourth` INT NOT NULL,
-                `fifth` INT NOT NULL,
-                `sixth` INT NOT NULL,
-                `seventh` INT NOT NULL,
+                `idOfGroup` INT NOT NULL,
+                `dateOfSchedule` DATE NOT NULL,
+                `lesson0` INT,
+                `lesson1` INT,
+                `lesson2` INT,
+                `lesson3` INT,
+                `lesson4` INT,
+                `lesson5` INT,
+                `lesson6` INT,
                 PRIMARY KEY (`id`),
-                FOREIGN KEY (first) REFERENCES mFirstLessons(id),
-                FOREIGN KEY (second) REFERENCES mSecondLessons(id),
-                FOREIGN KEY (third) REFERENCES mThirdLessons(id),
-                FOREIGN KEY (fourth) REFERENCES mFourthLessons(id),
-                FOREIGN KEY (sixth) REFERENCES mSixthLessons(id),
-                FOREIGN KEY (seventh) REFERENCES mSeventhLessons(id)
+                FOREIGN KEY (idOfGroup) REFERENCES groups(id),
+                FOREIGN KEY (first) REFERENCES mLessons0(id),
+                FOREIGN KEY (second) REFERENCES mLessons1(id),
+                FOREIGN KEY (third) REFERENCES mLessons2(id),
+                FOREIGN KEY (fourth) REFERENCES mLessons3(id),
+                FOREIGN KEY (fifth) REFERENCES mLessons4(id),
+                FOREIGN KEY (sixth) REFERENCES mLessons5(id),
+                FOREIGN KEY (seventh) REFERENCES mLessons6(id)
             );
             CREATE TABLE `$name`.`sSchedule` (
                 `id` INT NOT NULL AUTO_INCREMENT,
-                `first` INT NOT NULL,
-                `second` INT NOT NULL,
-                `third` INT NOT NULL,
-                `fourth` INT NOT NULL,
-                `fifth` INT NOT NULL,
-                `sixth` INT NOT NULL,
-                `seventh` INT NOT NULL,
+                `idOfGroup` INT NOT NULL,
+                `dateOfSchedule` DATE NOT NULL,
+                `countOfChanges` INT NOT NULL,
+                `lesson0` INT,
+                `lesson1` INT,
+                `lesson2` INT,
+                `lesson3` INT,
+                `lesson4` INT,
+                `lesson5` INT,
+                `lesson6` INT,
                 PRIMARY KEY (`id`),
-                FOREIGN KEY (first) REFERENCES sFirstLessons(id),
-                FOREIGN KEY (second) REFERENCES sSecondLessons(id),
-                FOREIGN KEY (third) REFERENCES sThirdLessons(id),
-                FOREIGN KEY (fourth) REFERENCES sFourthLessons(id),
-                FOREIGN KEY (sixth) REFERENCES sSixthLessons(id),
-                FOREIGN KEY (seventh) REFERENCES sSeventhLessons(id)
+                FOREIGN KEY (idOfGroup) REFERENCES groups(id),
+                FOREIGN KEY (first) REFERENCES sLessons0(id),
+                FOREIGN KEY (second) REFERENCES sLessons1(id),
+                FOREIGN KEY (third) REFERENCES sLessons2(id),
+                FOREIGN KEY (fourth) REFERENCES sLessons3(id),
+                FOREIGN KEY (fifth) REFERENCES sLessons4(id),
+                FOREIGN KEY (sixth) REFERENCES sLessons5(id),
+                FOREIGN KEY (seventh) REFERENCES sLessons6(id)
             );
             CREATE TABLE `$name`.`managers` (
                 `id` INT NOT NULL AUTO_INCREMENT,

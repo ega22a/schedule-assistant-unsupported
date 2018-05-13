@@ -23,11 +23,11 @@
                 echo '
                     <div class="card" id="с-' . $i . '" style="opacity: 1;">
                         <div class="input">
-                            <input type="text" readonly value="' . $row['firstName'] . '">
+                            <input type="text" readonly value="' . $row['lastName'] . '">
                             <span></span>
                         </div>
                         <div class="input">
-                            <input type="text" readonly value="' . $row['lastName'] . '">
+                            <input type="text" readonly value="' . $row['firstName'] . '">
                             <span></span>
                         </div>
                         <div class="input">

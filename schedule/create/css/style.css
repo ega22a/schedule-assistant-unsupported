@@ -1,0 +1,87 @@
+h1 {
+    margin: 50px 0 25px 25px;
+}
+
+.date-of-schedule {
+    margin: 0 0 25px 25px;
+}
+
+.big-table {
+	margin: 0 25px;
+	display: inline-block;
+}
+
+.big-table > table {
+	border-collapse: collapse;
+	max-width: 407px;
+	float: left;
+	margin: -1px 0 0 -1px;
+}
+
+.table-th-number {
+	width: 41px;
+}
+
+.table-th-discipline, .table-th-teacher {
+	width: 150px;
+}
+
+.table-th-room {
+	width: 66px;
+}
+
+.big-table > table td, .big-table > table th {
+	border: 1px solid #bdbdbd;
+}
+
+.big-table > table td > input {
+	display: table-cell;
+    border: none;
+    padding: 0;
+    width: 100%;
+}
+
+.big-table > table td > ul {
+	list-style: none;
+	margin: 2px;
+	margin-top: 1px;
+	padding: 0;
+	position: absolute;
+	min-width: 150px;
+	max-width: 250px;
+	overflow: hidden;
+	background: #ffffff;
+	display: none;
+}
+
+.big-table > table td > ul > li {
+	border: 1px solid #5d5d5d;
+	margin-top: -1px;
+	padding-left: 5px;
+	cursor: pointer;
+}
+
+.big-table > table td > ul > li:hover {
+	background: #bdbdbd;
+}
+
+.error-cell {
+	background: #ff9e9e;
+}
+
+.wall-text {
+    font-size: 2em;
+    text-align: center;
+    display: block;
+    color: #808080;
+}
+
+.wall:before {
+    font-family: "FontAwesome";
+    content: "\f19c";
+    font-size: 20em;
+    color: #808080;
+    text-align: center;
+    display: block;
+    margin-top: 50px;
+}

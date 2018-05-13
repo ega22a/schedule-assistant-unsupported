@@ -25,11 +25,11 @@
             echo '
             <div class="card" id="c-' . $i . '" style="opacity: 1;" db="' . $row['id'] . '">
                 <div class="input">
-                    <input type="text" placeholder="Фамилия" value="' . $row['firstName'] . '">
+                    <input type="text" placeholder="Фамилия" value="' . $row['lastName'] . '">
                     <span></span>
                 </div>
                 <div class="input">
-                    <input type="text" placeholder="Имя" value="' . $row['lastName'] . '">
+                    <input type="text" placeholder="Имя" value="' . $row['firstName'] . '">
                     <span></span>
                 </div>
                 <div class="input">
