@@ -53,9 +53,9 @@ function PushInDB() {
 		}
 		else {
             thumbArray[0] = document.getElementsByClassName('card')[i].children[0].children[0].value.trim();
-            for (j = 1; j < document.getElementsByClassName('card')[i].children[2].children[0].children.length; j++) {
-                if (document.getElementsByClassName('card')[i].children[2].children[0].children[j].selected) {
-                    thumbArray[1] = document.getElementsByClassName('card')[i].children[2].children[0].children[j].value;
+            for (j = 1; j < document.getElementsByClassName('card')[i].children[1].children[0].children.length; j++) {
+                if (document.getElementsByClassName('card')[i].children[1].children[0].children[j].selected) {
+                    thumbArray[1] = document.getElementsByClassName('card')[i].children[1].children[0].children[j].value;
                 }
             }
             if (document.getElementsByClassName('card')[i].hasAttribute('db')) {

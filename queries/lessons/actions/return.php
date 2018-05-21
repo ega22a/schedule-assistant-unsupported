@@ -1,12 +1,15 @@
 <?php
-    $disciplines = $_POST['disciplines'];
+    include($_SERVER['DOCUMENT_ROOT'] . '/queries/auth/auto-auth.php');
 
-    // Совершаем соединение к БД
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
+    if ($isAuth) {
+        $disciplines = $_POST['disciplines'];
 
-    foreach ($disciplines as $discipline) {
-        $query = "UPDATE `disciplines` SET `isDelete` = 0 WHERE `id` = $discipline";
-        $MySQL -> query($query);
+        require $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
+
+        foreach ($disciplines as $discipline) {
+            $query = "UPDATE `disciplines` SET `isDelete` = 0 WHERE `id` = $discipline";
+            $MySQL -> query($query);
+        }
     }
 
     $MySQL -> close();

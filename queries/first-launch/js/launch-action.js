@@ -69,6 +69,8 @@ function finishInstallation() {
         admin_firstName = document.getElementById('admin_firstName').value.trim(),
         admin_lastName = document.getElementById('admin_lastName').value.trim(),
         admin_middleName = document.getElementById('admin_middleName').value.trim(),
+        school_data = document.getElementById('school_data').value.trim(),
+        school_admin = document.getElementById('school_admin').value.trim(),
         err = true;
 
     if (admin_email == '' || admin_firstName == '' || admin_lastName == '') {
@@ -83,7 +85,9 @@ function finishInstallation() {
                 "admin_email": admin_email,
                 "admin_firstName": admin_firstName,
                 "admin_lastName": admin_lastName,
-                "admin_middleName": admin_middleName
+                "admin_middleName": admin_middleName,
+                "school_data": school_data,
+                "school_admin": school_data
             },
             function() {
                 document.location = '../../';

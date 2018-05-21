@@ -15,6 +15,9 @@ $(document).ready(function(){
                     disabled: isDisabled
                 }
             }
+        },
+        onSelect: function (formattedDate, date, inst) {
+            inst.hide();
         }
     })
 
@@ -185,7 +188,7 @@ function saveSchedule() {
                 function(data) {
                     switch (data['errno']) {
                         case 0:
-                            if (confirm('Расписание на' + document.getElementsByClassName('datepicker-here')[0].value + 'число уже существует. Вы хотите сохранить расписание как изменение?')) {
+                            if (confirm('Расписание на ' + document.getElementsByClassName('datepicker-here')[0].value + ' число уже существует. Вы хотите сохранить расписание как изменение?')) {
                                 $.post(
                                     'actions/create.php',
                                     {

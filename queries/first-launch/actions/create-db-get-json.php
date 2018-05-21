@@ -67,7 +67,6 @@
         
         // Шифрование логина и кодовых слов
         $manager_password = password_hash($manager_password, PASSWORD_DEFAULT);
-        $manager_secret_word = password_hash($manager_secret_word, PASSWORD_DEFAULT);
         $manager_secret_word = [
             hash("sha256", $manager_secret_word[0]),
             hash("sha256", $manager_secret_word[1]),
@@ -267,13 +266,13 @@
                 `lesson6` INT,
                 PRIMARY KEY (`id`),
                 FOREIGN KEY (idOfGroup) REFERENCES groups(id),
-                FOREIGN KEY (first) REFERENCES mLessons0(id),
-                FOREIGN KEY (second) REFERENCES mLessons1(id),
-                FOREIGN KEY (third) REFERENCES mLessons2(id),
-                FOREIGN KEY (fourth) REFERENCES mLessons3(id),
-                FOREIGN KEY (fifth) REFERENCES mLessons4(id),
-                FOREIGN KEY (sixth) REFERENCES mLessons5(id),
-                FOREIGN KEY (seventh) REFERENCES mLessons6(id)
+                FOREIGN KEY (lesson0) REFERENCES mLessons0(id),
+                FOREIGN KEY (lesson1) REFERENCES mLessons1(id),
+                FOREIGN KEY (lesson2) REFERENCES mLessons2(id),
+                FOREIGN KEY (lesson3) REFERENCES mLessons3(id),
+                FOREIGN KEY (lesson4) REFERENCES mLessons4(id),
+                FOREIGN KEY (lesson5) REFERENCES mLessons5(id),
+                FOREIGN KEY (lesson6) REFERENCES mLessons6(id)
             );
             CREATE TABLE `$name`.`sSchedule` (
                 `id` INT NOT NULL AUTO_INCREMENT,
@@ -289,13 +288,13 @@
                 `lesson6` INT,
                 PRIMARY KEY (`id`),
                 FOREIGN KEY (idOfGroup) REFERENCES groups(id),
-                FOREIGN KEY (first) REFERENCES sLessons0(id),
-                FOREIGN KEY (second) REFERENCES sLessons1(id),
-                FOREIGN KEY (third) REFERENCES sLessons2(id),
-                FOREIGN KEY (fourth) REFERENCES sLessons3(id),
-                FOREIGN KEY (fifth) REFERENCES sLessons4(id),
-                FOREIGN KEY (sixth) REFERENCES sLessons5(id),
-                FOREIGN KEY (seventh) REFERENCES sLessons6(id)
+                FOREIGN KEY (lesson0) REFERENCES sLessons0(id),
+                FOREIGN KEY (lesson1) REFERENCES sLessons1(id),
+                FOREIGN KEY (lesson2) REFERENCES sLessons2(id),
+                FOREIGN KEY (lesson3) REFERENCES sLessons3(id),
+                FOREIGN KEY (lesson4) REFERENCES sLessons4(id),
+                FOREIGN KEY (lesson5) REFERENCES sLessons5(id),
+                FOREIGN KEY (lesson6) REFERENCES sLessons6(id)
             );
             CREATE TABLE `$name`.`managers` (
                 `id` INT NOT NULL AUTO_INCREMENT,

@@ -1,3 +1,7 @@
+var selectedType,
+    selectedDate,
+    selectID;
+
 function DelSomething(id, timeout) {
 	setTimeout(function(){
 		$('#' + id).animate({"opacity": "0"}, "fast", function(){
@@ -41,12 +45,84 @@ function Modal(closeOrOpen, type) {
     switch (closeOrOpen) {
         case 1:
             $.post(
-                'queries/index/modal.php',
+                '/queries/index/modal.php',
                 {
                     'mNumber': type
                 },
                 function(data) {
                     document.getElementsByClassName('modal')[0].innerHTML = data;
+                    var disabledDays = [0];
+
+                    if (type == 2) {
+                        $('.date-of-select').datepicker({
+                            onRenderCell: function (date, cellType) {
+                                if (cellType == 'day') {
+                                    var day = date.getDay(),
+                                        isDisabled = disabledDays.indexOf(day) != -1;
+                        
+                                    return {
+                                        disabled: isDisabled
+                                    }
+                                }
+                            },
+                            onSelect: function (formattedDate, date, inst) {
+                                selectedDate = formattedDate;
+                                switch (selectedType) {
+                                    case 1:
+                                        $('.modal').animate({'opacity': '0'}, 'fast', function() {
+                                            $('.modal').css('display', 'none');
+                                            document.getElementsByClassName('modal')[0].innerHTML = '';
+                                            $.post(
+                                                '/queries/index/modal.php',
+                                                {
+                                                    'mNumber': 3
+                                                },
+                                                function(data) {
+                                                    document.getElementsByClassName('modal')[0].innerHTML = data;
+                                                    $('.modal').css('display', 'block');
+                                                    $('.modal').animate({'opacity': '1'}, 'fast');
+                                                }
+                                            );
+                                        })
+                                    break;
+                                    case 2:
+                                        $('.modal').animate({'opacity': '0'}, 'fast', function() {
+                                            $('.modal').css('display', 'none');
+                                            document.getElementsByClassName('modal')[0].innerHTML = '';
+                                            $.post(
+                                                '/queries/index/modal.php',
+                                                {
+                                                    'mNumber': 4
+                                                },
+                                                function(data) {
+                                                    document.getElementsByClassName('modal')[0].innerHTML = data;
+                                                    $('.modal').css('display', 'block');
+                                                    $('.modal').animate({'opacity': '1'}, 'fast');
+                                                }
+                                            );
+                                        })
+                                    break;
+                                    case 3:
+                                        $('.modal').animate({'opacity': '0'}, 'fast', function() {
+                                            $('.modal').css('display', 'none');
+                                            document.getElementsByClassName('modal')[0].innerHTML = '';
+                                            $.post(
+                                                '/queries/index/modal.php',
+                                                {
+                                                    'mNumber': 5
+                                                },
+                                                function(data) {
+                                                    document.getElementsByClassName('modal')[0].innerHTML = data;
+                                                    $('.modal').css('display', 'block');
+                                                    $('.modal').animate({'opacity': '1'}, 'fast');
+                                                }
+                                            );
+                                        })
+                                    break;
+                                }
+                            }
+                        })
+                    }
                 }
             )
             $('.modal').css('display', 'block');
@@ -61,6 +137,21 @@ function Modal(closeOrOpen, type) {
     }
 }
 
+function FinishSelect() {
+    selectID = document.getElementsByClassName('mdl-selectfield')[0].children[0].value;
+    switch (selectedType) {
+        case 1:
+            document.location = '/schedule/view/groups/?date=' + selectedDate + '&id=' + selectID;
+        break;
+        case 2:
+            document.location = '/schedule/view/teachers/?date=' + selectedDate + '&id=' + selectID;
+        break;
+        case 3:
+            document.location = '/schedule/view/print/?date=' + selectedDate + '&id=' + selectID;
+        break;
+    }
+}
+
 function Auth(exit) {
     if (!exit) {
         var login = document.getElementById('login').value.trim(),
@@ -71,7 +162,7 @@ function Auth(exit) {
         });
         setTimeout(function() {
             $.post(
-                'queries/auth/auth.php',
+                '/queries/auth/auth.php',
                 {
                     'login': login,
                     'password': password,

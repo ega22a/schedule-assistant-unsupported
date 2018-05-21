@@ -21,8 +21,8 @@
 
         require $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
 
-            $m_check = "SELECT * FROM `mSchedule` WHERE `dateOfSchedule` = '$date' LIMIT 1";
-            $m_check = $MySQL -> query($m_check);
+        $m_check = "SELECT * FROM `mSchedule` WHERE `dateOfSchedule` = '$date' LIMIT 1";
+        $m_check = $MySQL -> query($m_check);
         if (empty($m_check -> fetch_assoc())) {
             foreach ($schedule as $housing) {
                 foreach ($housing as $group) {
@@ -62,21 +62,18 @@
             }
         }
         elseif ($agree) {
-            $query_sec = "SELECT `countOfChanges` FROM `sSchedule` WHERE `dateOdSchedule` = '$date'";
-            $query_sec = $MySQL -> query($query_sec);
-            $sec_counter = 0;
-
-            while ($row = $query_sec -> fetch_assoc()) {
-                if ($sec_counter < $row['countOfChanges']) {
-                    $sec_counter++;
-                }
-            }
 
             foreach ($schedule as $housing) {
                 foreach ($housing as $group) {
                     $idOfGroup = intval(explode('-', $group -> group)[1]);
                     $idsOfLessons = [];
                     $counter = 0;
+                    $sec_counter = "SELECT * FROM `sSchedule` WHERE `countOfChanges` = (SELECT MAX(`countOfChanges`) FROM `sSchedule`)";
+                    $sec_counter = $MySQL -> query($sec_counter);
+                    $sec_counter = intval($sec_counter -> fetch_assoc()['countOfChange']) + 1;
+                    $check_query = "SELECT * FROM `mSchedule` WHERE `idOfGroup` = $idOfGroup && `dateOfSchedule` = $date";
+                    $check_query = $MySQL -> query($check_query);
+                    $check_query = $check_query -> fetch_assoc();
                     foreach ($group -> lessons as $lesson) {
                         $discipline[0] = trim(explode(' (', $lesson[0])[0]);
                         $discipline[1] = trim(substr(explode(' (', $lesson[0])[1], 0, -1));
@@ -84,7 +81,7 @@
                         $classroom[0] = trim(mb_substr(explode(' ', $lesson[2])[0], 1));
                         $classroom[1] = trim(mb_substr(explode(' ', $lesson[2])[1], 1));
                         
-                        $d_query = "SELECT `id` FROM `disciplines` WHERE `id` = `shortName` = '$discipline[0]' && `fullName` = '$discipline[1]'";
+                        $d_query = "SELECT `id` FROM `disciplines` WHERE `shortName` = '$discipline[0]' && `fullName` = '$discipline[1]'";
                         $d_query = $MySQL -> query($d_query);
                         $d_query = intval($d_query -> fetch_assoc()['id']);
                         $t_query = "SELECT `id` FROM `teachers` WHERE `firstName` = '$teacher[1]' && `lastName` = '$teacher[0]' && `middleName` = '$teacher[2]'";
@@ -97,14 +94,32 @@
                         $c_query = $MySQL -> query($c_query);
                         $c_query = intval($c_query -> fetch_assoc()['id']);
 
-                        $name_of_table = 'sLessons' . $counter;
-                        $m_query = "INSERT INTO `$name_of_table` (`idOfTeacher`, `idOfDiscipline`, `idOfClassroom`) VALUES ($t_query, $d_query, $c_query)";
-                        $MySQL -> query($m_query);
-                        $idsOfLessons[] = $MySQL -> insert_id;
+                        $check_id = intval($check_query['lesson' . $counter]);
+                        $thumb_query = "SELECT * FROM `mLessons$counter` WHERE `id` = $check_id";
+                        $thumb_query = $MySQL -> query($thumb_query);
+                        $thumb_query = $thumb_query -> fetch_assoc();
+
+                        if($thumb_query['idOfTeacher'] != $t_query || $thumb_query['idOfDiscipline'] != $d_query || $thumb_query['idOfClassroom'] != $c_query) {
+                            $name_of_table = 'sLessons' . $counter;
+                            $m_query = "INSERT INTO `$name_of_table` (`idOfTeacher`, `idOfDiscipline`, `idOfClassroom`) VALUES ($t_query, $d_query, $c_query)";
+                            $MySQL -> query($m_query);
+                            $idsOfLessons[] = $MySQL -> insert_id;
+                        }
+                        else {
+                            $idsOfLessons[] = 0;
+                        }
                         $counter++;
                     }
-                    $insert_query = "INSERT INTO `sSchedule` (`idOfGroup`, `dateOfSchedule`, `countOfChanges` `lesson0`, `lesson1`, `lesson2`, `lesson3`, `lesson4`, `lesson5`, `lesson6`) VALUES ($idOfGroup, '$date', $sec_counter, IF($idsOfLessons[0] = 0, NULL, $idsOfLessons[0]), IF($idsOfLessons[1] = 0, NULL, $idsOfLessons[1]), IF($idsOfLessons[2] = 0, NULL, $idsOfLessons[2]), IF($idsOfLessons[3] = 0, NULL, $idsOfLessons[3]), IF($idsOfLessons[4] = 0, NULL, $idsOfLessons[4]), IF($idsOfLessons[5] = 0, NULL, $idsOfLessons[5]), IF($idsOfLessons[6] = 0, NULL, $idsOfLessons[6]))";
-                    $MySQL -> query($insert_query);
+                    $counter_of_null = 0;
+                    foreach ($idsOfLessons as $id) {
+                        if ($id == 0) {
+                            $counter_of_null++;
+                        }
+                    }
+                    if ($counter_of_null != 7) {
+                        $insert_query = "INSERT INTO `sSchedule` (`idOfGroup`, `dateOfSchedule`, `countOfChanges`, `lesson0`, `lesson1`, `lesson2`, `lesson3`, `lesson4`, `lesson5`, `lesson6`) VALUES ($idOfGroup, '$date', $sec_counter, IF($idsOfLessons[0] = 0, NULL, $idsOfLessons[0]), IF($idsOfLessons[1] = 0, NULL, $idsOfLessons[1]), IF($idsOfLessons[2] = 0, NULL, $idsOfLessons[2]), IF($idsOfLessons[3] = 0, NULL, $idsOfLessons[3]), IF($idsOfLessons[4] = 0, NULL, $idsOfLessons[4]), IF($idsOfLessons[5] = 0, NULL, $idsOfLessons[5]), IF($idsOfLessons[6] = 0, NULL, $idsOfLessons[6]))";
+                        $MySQL -> query($insert_query);
+                    }
                     $answer['errno'] = 10 . '-' . $sec_counter;
                 }
             }

@@ -1,0 +1,119 @@
+h1 {
+    margin: 20px 0 25px 25px;
+}
+
+.printable {
+    display: none;
+}
+
+@media print {
+    .workspace {
+        display: none;
+    }
+
+    .printable {
+        display: block;
+    }
+
+    html {
+        background-color: #FFFFFF; 
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        font-size: 7.5pt;
+        font-family: "Times New Roman";
+    }
+
+    .sheet {
+        border: 1px dashed #000000;
+        margin: 5mm auto;
+        padding: .5cm;
+        width: 287mm;
+        height: 199.8mm;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    td, th {
+        border: 1px solid #000000;
+    }
+
+    tr:nth-child(4n+3), tr:nth-child(4n+4) {
+        background: #bdbdbd;
+    }
+
+    tr:nth-child(2n+3) td:nth-child(even) {
+        border-bottom: none;
+    }
+
+    tr:nth-child(2n+4) td {
+        border-top: none;
+    }
+
+    .group {
+        width: 11mm;
+    }
+
+    .lesson {
+        width: 33mm;
+    }
+
+    .room {
+        width: 5mm;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    td > div {
+        position: relative;
+        width: 33mm;
+        height: 3mm;
+    }
+
+    td > div > div {
+        white-space: nowrap;
+        position: absolute;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .footer {
+        width: 100%;
+        margin-top: 5mm;
+    }
+
+    .footer td {
+        border: none;
+    }
+
+    .footer tr:nth-child(odd) td:nth-child(odd), .footer tr:nth-child(even) td:nth-child(odd) {
+        text-align: left;
+    }
+
+    .footer tr:nth-child(odd) td:nth-child(even), .footer tr:nth-child(even) td:nth-child(even) {
+        text-align: right;
+    }
+
+    .footer .sign {
+        display: inline-block;
+        width: 3cm;
+        border-bottom: 1px solid #000000;
+    }
+
+    @page {
+        size: landscape;
+        margin: 0;
+    }
+
+    .sheet {
+        margin: 0;
+        border: none;
+    }
+}

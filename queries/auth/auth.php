@@ -21,7 +21,7 @@
     // Выполняем запрос на поиск контент-менеджера, формируем ответ в виде массива
     $query = "SELECT * FROM `managers` WHERE `manager_login` = '$login'";
     $result = $MySQL -> query($query);
-    $result = $result -> fetch_array(MYSQLI_ASSOC);
+    $result = $result -> fetch_assoc();
 
     if (!empty($result)) {
         // Если нашли пользователя, то сверяем пароль

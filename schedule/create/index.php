@@ -8,7 +8,6 @@
             <div class="workspace">';
         include ($_SERVER['DOCUMENT_ROOT'] . '/queries/index/h-menu.phtml');
         echo '
-            </ul>
             <div class="message-box not-selected"></div>
             <h1 class="not-selected">Создать расписание</h1>';
             require $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';

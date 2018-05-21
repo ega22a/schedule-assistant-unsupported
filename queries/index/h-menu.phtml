@@ -6,13 +6,13 @@
             <a href="#">Расписание</a>
             <ul class="header-menu-submenu">
                 <li>
-                    <a href="#">Группы</a>
+                    <a href="#" onclick="selectedType = 1; Modal(1, 2);">Группы</a>
                 </li>
                 <li>
-                    <a href="#">Преподаватели</a>
+                    <a href="#" onclick="selectedType = 2; Modal(1, 2);">Преподаватели</a>
                 </li>
                 <li>
-                    <a href="#">Печать</a>
+                    <a href="#" onclick="selectedType = 3; Modal(1, 2);">Печать</a>
                 </li>';
     if ($isAuth) {
         echo '

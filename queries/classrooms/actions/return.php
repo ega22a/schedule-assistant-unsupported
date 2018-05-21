@@ -1,12 +1,15 @@
 <?php
-    $classrooms = $_POST['classrooms'];
+    include($_SERVER['DOCUMENT_ROOT'] . '/queries/auth/auto-auth.php');
 
-    // Совершаем соединение к БД
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
+    if ($isAuth) {
+        $classrooms = $_POST['classrooms'];
 
-    foreach ($classrooms as $classroom) {
-        $query = "UPDATE `classrooms` SET `isDelete` = 0 WHERE `id` = $classroom";
-        $MySQL -> query($query);
+        require $_SERVER['DOCUMENT_ROOT'] . '/config/mysql/connect.php';
+
+        foreach ($classrooms as $classroom) {
+            $query = "UPDATE `classrooms` SET `isDelete` = 0 WHERE `id` = $classroom";
+            $MySQL -> query($query);
+        }
     }
 
     $MySQL -> close();

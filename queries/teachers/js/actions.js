@@ -48,6 +48,9 @@ function PushInDB() {
         {
             'teachers': pushArr,
             'del-id': del
+        },
+        function() {
+            GetMessage(1, 'Записи успешно внесены!');
         }
     )
 }
@@ -57,6 +60,9 @@ function ReturnOutDB() {
         '../actions/return.php',
         {
             'teachers': ret
+        },
+        function() {
+            GetMessage(1, 'Некторые записи успешно возвращены!');
         }
     )
 }
