@@ -1,4 +1,4 @@
 <?php
-    define('SCHOOL_NAME', 'ГБПОУ СО "Нижнетагильский торгово-экономический колледж"');
-    define('SCHOOL_ADMIN', 'Горбоносова Н.Г.');
+	define('SCHOOL_NAME', 'SCHOOL_NAME');
+	define('SCHOOL_ADMIN', 'Горбоносова Н.Г.');
 ?>

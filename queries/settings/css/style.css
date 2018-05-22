@@ -1,0 +1,12 @@
+h1 {
+    margin: 50px 0 25px 25px;
+}
+
+form {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.not-float {
+    float: initial !important;
+}
