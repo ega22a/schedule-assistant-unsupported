@@ -28,7 +28,7 @@
                 include($_SERVER['DOCUMENT_ROOT'] . '/config/school.php');
                 $thumb = SCHOOL_ADMIN;
                 unlink($_SERVER['DOCUMENT_ROOT'] . '/config/school.php');
-                $SCHOOL = "<?php\n\tdefine('SCHOOL_NAME', $data);\n\tdefine('SCHOOL_ADMIN', '$thumb');\n?>";
+                $SCHOOL = "<?php\n\tdefine('SCHOOL_NAME', '$data');\n\tdefine('SCHOOL_ADMIN', '$thumb');\n?>";
                 $S_FILE = fopen($_SERVER['DOCUMENT_ROOT'] . '/config/school.php', 'w');
                 fwrite($S_FILE, $SCHOOL);
                 fclose($S_FILE);

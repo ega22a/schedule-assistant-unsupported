@@ -137,6 +137,7 @@
                         <th class="room">Каб</th>
                     </tr>
             ';
+            $sheet++;
         }
         echo '
             <tr>
@@ -279,6 +280,7 @@
                 </table>
             </div>
         ';
+        $sheet++;
     }
 
     echo '

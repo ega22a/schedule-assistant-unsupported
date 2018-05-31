@@ -20,10 +20,9 @@ $(document).ready(function(){
                 '../actions/get.housings.select.php',
                 {},
                 function (data) {
-                    card.innerHTML += data;
+                    card.innerHTML += data + '<input type="button" onclick="DelSomething(\'' + card.id + '\');" value="Удалить">';
                 }
             )
-            card.innerHTML += '<input type="button" onclick="DelSomething(\'' + card.id + '\');" value="Удалить">';
         }
         else {
             card.innerHTML = '<div class="input"><input type="text" placeholder="Имя группы"><span></span></div>';
@@ -31,10 +30,9 @@ $(document).ready(function(){
                 '../actions/get.housings.select.php',
                 {},
                 function (data) {
-                    card.innerHTML += data;
+                    card.innerHTML += data + '<input type="button" onclick="DelSomething(\'' + 'c-' + q + '-' + i + '\');" value="Удалить">';
                 }
             )
-            card.innerHTML += '<input type="button" onclick="DelSomething(\'' + 'c-' + q + '-' + i + '\');" value="Удалить">';
         }
         $.when($('.new-card').before(card))
             .done(function(){
@@ -45,6 +43,7 @@ $(document).ready(function(){
 
 function PushInDB() {
     var pushArr = [];
+    console.log(document.getElementsByClassName('card').length);
     for (var i = 0; i < document.getElementsByClassName('card').length - 1; i++) {
         var thumbArray = [];
 		if (document.getElementsByClassName('card')[i].children[0].children[0].value.trim() == '') {
@@ -64,6 +63,7 @@ function PushInDB() {
 	    }
     pushArr[i] = thumbArray;
     }
+    console.log(pushArr);
     $.post(
         '../actions/push.php',
         {

@@ -43,7 +43,7 @@
                     <input type="button" class="not-float" onclick="SaveSettings(3);" value="Сохранить">
                     <h2>Изменить наименование учебного заведения</h2>
                     <div class="input">
-                        <input type="password" placeholder="Новое название" id="systems-settings-school">
+                        <input type="text" placeholder="Новое название" id="systems-settings-school">
                         <span></span>
                     </div>
                     <input type="button" class="not-float" onclick="SaveSettings(4);" value="Сохранить">

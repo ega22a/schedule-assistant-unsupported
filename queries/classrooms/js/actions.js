@@ -20,10 +20,9 @@ $(document).ready(function(){
                 '../actions/get.housings.select.php',
                 {},
                 function (data) {
-                    card.innerHTML += data;
+                    card.innerHTML += data + '<input type="button" onclick="DelSomething(\'' + card.id + '\');" value="Удалить">';
                 }
             )
-            card.innerHTML += '<input type="button" onclick="DelSomething(\'' + card.id + '\');" value="Удалить">';
         }
         else {
             card.innerHTML = '<div class="input"><input type="text" placeholder="Номер кабинета"><span></span></div>';
@@ -31,10 +30,9 @@ $(document).ready(function(){
                 '../actions/get.housings.select.php',
                 {},
                 function (data) {
-                    card.innerHTML += data;
+                    card.innerHTML += data + '<input type="button" onclick="DelSomething(\'' + 'c-' + q + '-' + i + '\');" value="Удалить">';
                 }
             )
-            card.innerHTML += '<input type="button" onclick="DelSomething(\'' + 'c-' + q + '-' + i + '\');" value="Удалить">';
         }
         $.when($('.new-card').before(card))
             .done(function(){
